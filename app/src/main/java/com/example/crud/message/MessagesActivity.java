@@ -40,7 +40,7 @@ public class MessagesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        fetchData();
+        fetchMessages();
     }
 
     @Override
@@ -70,7 +70,7 @@ public class MessagesActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
     }
 
-    public void fetchData() {
+    public void fetchMessages() {
         showProgressBar();
         MessagesApi messagesApi = new MessagesApi();
         MessagesService messagesService = messagesApi.createMessagesService();
@@ -99,7 +99,7 @@ public class MessagesActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Toast.makeText(MessagesActivity.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
-                fetchData();
+                fetchMessages();
             }
 
             @Override

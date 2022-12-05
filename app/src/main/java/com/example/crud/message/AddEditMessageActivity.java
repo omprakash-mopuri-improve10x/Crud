@@ -26,7 +26,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_message);
-        findIds();
+        findViews();
         if (getIntent().hasExtra("message")) {
             getSupportActionBar().setTitle("Edit Message");
             message = (Message) getIntent().getSerializableExtra("message");
@@ -59,11 +59,11 @@ public class AddEditMessageActivity extends AppCompatActivity {
         }
     }
 
-    public void addMessage(String name, String phoneNumber, String message) {
-        Message message1 = new Message(name, phoneNumber, message);
+    public void addMessage(String name, String phoneNumber, String messageTxt) {
+        Message message = new Message(name, phoneNumber, messageTxt);
         MessagesApi messagesApi = new MessagesApi();
         MessagesService messagesService = messagesApi.createMessagesService();
-        Call<Message> call = messagesService.createMessage(message1);
+        Call<Message> call = messagesService.createMessage(message);
         call.enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
@@ -78,11 +78,11 @@ public class AddEditMessageActivity extends AppCompatActivity {
         });
     }
 
-    public void updateMessage(String id, String name, String phoneNumber, String message) {
-        Message message1 = new Message(name, phoneNumber, message);
+    public void updateMessage(String id, String name, String phoneNumber, String messageTxt) {
+        Message message = new Message(name, phoneNumber, messageTxt);
         MessagesApi messagesApi = new MessagesApi();
         MessagesService messagesService = messagesApi.createMessagesService();
-        Call<Void> call = messagesService.updateMessage(id, message1);
+        Call<Void> call = messagesService.updateMessage(id, message);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -97,7 +97,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
         });
     }
 
-    public void findIds() {
+    public void findViews() {
         nameTxt = findViewById(R.id.name_txt);
         phoneNumberTxt = findViewById(R.id.phone_number_txt);
         messageTxt = findViewById(R.id.message_txt);
@@ -106,6 +106,6 @@ public class AddEditMessageActivity extends AppCompatActivity {
     public void showData() {
         nameTxt.setText(message.name);
         phoneNumberTxt.setText(message.phoneNumber);
-        messageTxt.setText(message.message);
+        messageTxt.setText(message.messageText);
     }
 }

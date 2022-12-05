@@ -11,15 +11,15 @@ public class Message implements Serializable {
     public String name;
     public String phoneNumber;
     @SerializedName("messageText")
-    public String message;
+    public String messageText;
 
     public Message() {
 
     }
 
-    public Message(String name, String phoneNumber, String message) {
+    public Message(String name, String phoneNumber, String messageText) {
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.message = message;
+        this.messageText = messageText;
     }
 }
