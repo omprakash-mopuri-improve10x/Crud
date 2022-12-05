@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".series.SeriesActivity">
+    tools:context=".series.SeriesListActivity">
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -15,7 +15,7 @@
         android:layout_centerInParent="true" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/series_rv"
+        android:id="@+id/series_list_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </RelativeLayout>

@@ -1,7 +1,5 @@
 package com.example.crud.series;
 
-import com.example.crud.series.Series;
-
 import java.util.List;
 
 import retrofit2.Call;
@@ -15,7 +13,7 @@ import retrofit2.http.Path;
 public interface SeriesService {
 
     @GET("omSeries")
-    Call<List<Series>> fetchSerieses();
+    Call<List<Series>> fetchSeriesList();
 
     @POST("omSeries")
     Call<Series> createSeries(@Body Series series);

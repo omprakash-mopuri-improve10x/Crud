@@ -12,17 +12,17 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class SeriesAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
+public class SeriesListAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
 
-    public List<Series> seriesArrayList;
+    public List<Series> seriesList;
     public SeriesOnItemActionListener seriesOnItemActionListener;
 
     public void setSeriesOnItemActionListener(SeriesOnItemActionListener seriesOnItemActionListener) {
         this.seriesOnItemActionListener = seriesOnItemActionListener;
     }
 
-    public void setData(List<Series> seriesArrayList) {
-        this.seriesArrayList = seriesArrayList;
+    public void setData(List<Series> seriesList) {
+        this.seriesList = seriesList;
         notifyDataSetChanged();
     }
 
@@ -36,10 +36,10 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull SeriesViewHolder holder, int position) {
-        Series series = seriesArrayList.get(position);
+        Series series = seriesList.get(position);
         holder.titleTxt.setText(series.title);
         if (series.imageUrl != null && series.imageUrl.isEmpty() == false) {
-            Picasso.get().load(series.imageUrl).into(holder.imageImg);
+            Picasso.get().load(series.imageUrl).into(holder.seriesImg);
         }
         holder.deleteIb.setOnClickListener(view -> {
             seriesOnItemActionListener.onDelete(series.id);
@@ -51,6 +51,6 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
 
     @Override
     public int getItemCount() {
-        return seriesArrayList.size();
+        return seriesList.size();
     }
 }

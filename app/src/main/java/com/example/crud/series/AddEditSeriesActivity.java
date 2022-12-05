@@ -26,7 +26,7 @@ public class AddEditSeriesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_series);
-        findIds();
+        findViews();
         if (getIntent().hasExtra("series")) {
             getSupportActionBar().setTitle("Edit series");
             series = (Series) getIntent().getSerializableExtra("series");
@@ -103,7 +103,7 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         imageUrlTxt.setText(series.imageUrl);
     }
 
-    public void findIds() {
+    public void findViews() {
         seriesIdTxt = findViewById(R.id.series_id_txt);
         seriesNameTxt = findViewById(R.id.series_name_txt);
         imageUrlTxt = findViewById(R.id.image_url_txt);

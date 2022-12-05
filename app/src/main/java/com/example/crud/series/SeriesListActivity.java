@@ -22,25 +22,25 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SeriesActivity extends AppCompatActivity {
+public class SeriesListActivity extends AppCompatActivity {
 
-    public RecyclerView seriesRv;
+    public RecyclerView seriesListRv;
     public ArrayList<Series> seriesList = new ArrayList<>();
-    public SeriesAdapter seriesAdapter;
+    public SeriesListAdapter seriesListAdapter;
     public ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_series);
+        setContentView(R.layout.activity_series_list);
         getSupportActionBar().setTitle("Series");
-        setupSeriesRv();
+        setupSeriesListRv();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        fetchData();
+        fetchSeriesList();
     }
 
     @Override
@@ -60,23 +60,23 @@ public class SeriesActivity extends AppCompatActivity {
         }
     }
 
-    public void fetchData() {
+    public void fetchSeriesList() {
         showProgressBar();
         SeriesApi seriesApi = new SeriesApi();
         SeriesService seriesService = seriesApi.createSeriesService();
-        Call<List<Series>> call = seriesService.fetchSerieses();
+        Call<List<Series>> call = seriesService.fetchSeriesList();
         call.enqueue(new Callback<List<Series>>() {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
                 hideProgressBar();
                 List<Series> serieses = response.body();
-                seriesAdapter.setData(serieses);
+                seriesListAdapter.setData(serieses);
             }
 
             @Override
             public void onFailure(Call<List<Series>> call, Throwable t) {
                 hideProgressBar();
-                Toast.makeText(SeriesActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SeriesListActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -88,13 +88,13 @@ public class SeriesActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(SeriesActivity.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
-                fetchData();
+                Toast.makeText(SeriesListActivity.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
+                fetchSeriesList();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(SeriesActivity.this, "Failed to delete", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SeriesListActivity.this, "Failed to delete", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -105,12 +105,12 @@ public class SeriesActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void setupSeriesRv() {
-        seriesRv = findViewById(R.id.series_rv);
-        seriesRv.setLayoutManager(new LinearLayoutManager(this));
-        seriesAdapter = new SeriesAdapter();
-        seriesAdapter.setData(seriesList);
-        seriesAdapter.setSeriesOnItemActionListener(new SeriesOnItemActionListener() {
+    public void setupSeriesListRv() {
+        seriesListRv = findViewById(R.id.series_list_rv);
+        seriesListRv.setLayoutManager(new LinearLayoutManager(this));
+        seriesListAdapter = new SeriesListAdapter();
+        seriesListAdapter.setData(seriesList);
+        seriesListAdapter.setSeriesOnItemActionListener(new SeriesOnItemActionListener() {
             @Override
             public void onDelete(String id) {
                 deleteSeries(id);
@@ -121,7 +121,7 @@ public class SeriesActivity extends AppCompatActivity {
                 editSeries(series);
             }
         });
-        seriesRv.setAdapter(seriesAdapter);
+        seriesListRv.setAdapter(seriesListAdapter);
     }
 
     public void showProgressBar() {
