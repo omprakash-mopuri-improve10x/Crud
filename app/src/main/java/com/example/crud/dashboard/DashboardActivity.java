@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    public RecyclerView dashboardRv;
+    public RecyclerView dashboardsRv;
     public ArrayList<Dashboard> dashboardList;
     public DashboardAdapter dashboardAdapter;
 
@@ -38,10 +38,10 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     public void setupDashboardsRv() {
-        dashboardRv = findViewById(R.id.dashboard_rv);
-        dashboardRv.setLayoutManager(new LinearLayoutManager(this));
+        dashboardsRv = findViewById(R.id.dashboards_rv);
+        dashboardsRv.setLayoutManager(new LinearLayoutManager(this));
         dashboardAdapter = new DashboardAdapter();
         dashboardAdapter.setData(dashboardList);
-        dashboardRv.setAdapter(dashboardAdapter);
+        dashboardsRv.setAdapter(dashboardAdapter);
     }
 }

@@ -36,7 +36,7 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull DashboardViewHolder holder, int position) {
         Dashboard dashboard = dashboards.get(position);
-        Picasso.get().load(dashboard.imageUrl).into(holder.imageImg);
+        Picasso.get().load(dashboard.imageUrl).into(holder.dashboardImg);
         holder.titleTxt.setText(dashboard.title);
         holder.dashboardLayout.setOnClickListener(view -> {
             if (holder.titleTxt.getText().toString().equalsIgnoreCase("Messages")) {

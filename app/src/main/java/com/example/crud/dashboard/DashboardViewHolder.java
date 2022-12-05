@@ -12,13 +12,13 @@ import com.example.crud.R;
 
 public class DashboardViewHolder extends RecyclerView.ViewHolder {
 
-    public ImageView imageImg;
+    public ImageView dashboardImg;
     public TextView titleTxt;
     public LinearLayout dashboardLayout;
 
     public DashboardViewHolder(@NonNull View itemView) {
         super(itemView);
-        imageImg = itemView.findViewById(R.id.image_img);
+        dashboardImg = itemView.findViewById(R.id.dashboard_img);
         titleTxt = itemView.findViewById(R.id.title_txt);
         dashboardLayout = itemView.findViewById(R.id.dashboard_layout);
     }
