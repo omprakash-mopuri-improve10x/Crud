@@ -10,16 +10,16 @@ import com.example.crud.R;
 
 import java.util.ArrayList;
 
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardsActivity extends AppCompatActivity {
 
     public RecyclerView dashboardsRv;
     public ArrayList<Dashboard> dashboardList;
-    public DashboardAdapter dashboardAdapter;
+    public DashboardsAdapter dashboardsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_dashboards);
         getSupportActionBar().setTitle("Dashboard");
         setupData();
         setupDashboardsRv();
@@ -40,8 +40,8 @@ public class DashboardActivity extends AppCompatActivity {
     public void setupDashboardsRv() {
         dashboardsRv = findViewById(R.id.dashboards_rv);
         dashboardsRv.setLayoutManager(new LinearLayoutManager(this));
-        dashboardAdapter = new DashboardAdapter();
-        dashboardAdapter.setData(dashboardList);
-        dashboardsRv.setAdapter(dashboardAdapter);
+        dashboardsAdapter = new DashboardsAdapter();
+        dashboardsAdapter.setData(dashboardList);
+        dashboardsRv.setAdapter(dashboardsAdapter);
     }
 }

@@ -9,13 +9,13 @@ public class Template implements Serializable {
     @SerializedName("_id")
     public String id;
     @SerializedName("messageText")
-    public String message;
+    public String messageTxt;
 
     public Template() {
 
     }
 
-    public Template(String message) {
-        this.message = message;
+    public Template(String messageTxt) {
+        this.messageTxt = messageTxt;
     }
 }

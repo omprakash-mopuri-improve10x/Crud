@@ -40,7 +40,7 @@ public class TemplatesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        fetchData();
+        fetchTemplates();
     }
 
     @Override
@@ -60,7 +60,7 @@ public class TemplatesActivity extends AppCompatActivity {
         }
     }
 
-    public void fetchData() {
+    public void fetchTemplates() {
         showProgressBar();
         TemplatesApi templatesApi = new TemplatesApi();
         TemplatesService templatesService = templatesApi.createTemplateService();
@@ -89,7 +89,7 @@ public class TemplatesActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Toast.makeText(TemplatesActivity.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
-                fetchData();
+                fetchTemplates();
             }
 
             @Override

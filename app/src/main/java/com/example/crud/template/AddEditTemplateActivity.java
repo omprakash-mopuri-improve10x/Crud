@@ -24,7 +24,7 @@ public class AddEditTemplateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_template);
-        findIds();
+        findViews();
         if (getIntent().hasExtra("template")) {
             getSupportActionBar().setTitle("Edit Template");
             template = (Template) getIntent().getSerializableExtra("template");
@@ -93,11 +93,11 @@ public class AddEditTemplateActivity extends AppCompatActivity {
         });
     }
 
-    public void findIds() {
+    public void findViews() {
         messageTxt = findViewById(R.id.message_txt);
     }
 
     public void showData() {
-        messageTxt.setText(template.message);
+        messageTxt.setText(template.messageTxt);
     }
 }
