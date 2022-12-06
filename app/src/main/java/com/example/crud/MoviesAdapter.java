@@ -14,6 +14,11 @@ import java.util.List;
 public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
 
     public List<Movie> movies;
+    public MovieOnItemActionListener movieOnItemActionListener;
+
+    public void setMovieOnItemActionListener(MovieOnItemActionListener movieOnItemActionListener) {
+        this.movieOnItemActionListener = movieOnItemActionListener;
+    }
 
     public void setData(List<Movie> movies) {
         this.movies = movies;
@@ -33,6 +38,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
         Movie movie = movies.get(position);
         holder.titleTxt.setText(movie.title);
         Picasso.get().load(movie.imageUrl).into(holder.movieImg);
+        holder.deleteIb.setOnClickListener(view -> {
+            movieOnItemActionListener.onDelete(movie.id);
+        });
     }
 
     @Override

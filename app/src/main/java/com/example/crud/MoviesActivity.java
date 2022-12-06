@@ -78,11 +78,40 @@ public class MoviesActivity extends AppCompatActivity {
         });
     }
 
+    public void deleteMovie(String id) {
+        MoviesApi moviesApi = new MoviesApi();
+        MoviesService moviesService = moviesApi.createMoviesService();
+        Call<Void> call = moviesService.deleteMovie(id);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Toast.makeText(MoviesActivity.this, "Successfully deleted a movie", Toast.LENGTH_SHORT).show();
+                fetchMovies();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(MoviesActivity.this, "Failed to delete a movie", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void setupMoviesRv() {
         moviesRv = findViewById(R.id.movies_rv);
         moviesRv.setLayoutManager(new GridLayoutManager(this, 2));
         moviesAdapter = new MoviesAdapter();
         moviesAdapter.setData(movieList);
+        moviesAdapter.setMovieOnItemActionListener(new MovieOnItemActionListener() {
+            @Override
+            public void onDelete(String id) {
+                deleteMovie(id);
+            }
+
+            @Override
+            public void onEdit(Movie movie) {
+
+            }
+        });
         moviesRv.setAdapter(moviesAdapter);
     }
 
