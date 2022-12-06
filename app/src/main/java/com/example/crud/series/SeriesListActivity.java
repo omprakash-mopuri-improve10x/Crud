@@ -62,15 +62,15 @@ public class SeriesListActivity extends AppCompatActivity {
 
     public void fetchSeriesList() {
         showProgressBar();
-        SeriesApi seriesApi = new SeriesApi();
-        SeriesService seriesService = seriesApi.createSeriesService();
-        Call<List<Series>> call = seriesService.fetchSeriesList();
+        SeriesListApi seriesListApi = new SeriesListApi();
+        SeriesListService seriesListService = seriesListApi.createSeriesService();
+        Call<List<Series>> call = seriesListService.fetchSeriesList();
         call.enqueue(new Callback<List<Series>>() {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
                 hideProgressBar();
-                List<Series> serieses = response.body();
-                seriesListAdapter.setData(serieses);
+                List<Series> seriesList1 = response.body();
+                seriesListAdapter.setData(seriesList1);
             }
 
             @Override
@@ -82,9 +82,9 @@ public class SeriesListActivity extends AppCompatActivity {
     }
 
     public void deleteSeries(String id) {
-        SeriesApi seriesApi = new SeriesApi();
-        SeriesService seriesService = seriesApi.createSeriesService();
-        Call<Void> call = seriesService.deleteSeries(id);
+        SeriesListApi seriesListApi = new SeriesListApi();
+        SeriesListService seriesListService = seriesListApi.createSeriesService();
+        Call<Void> call = seriesListService.deleteSeries(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

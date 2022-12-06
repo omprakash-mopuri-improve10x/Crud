@@ -61,9 +61,9 @@ public class AddEditSeriesActivity extends AppCompatActivity {
 
     public void addSeries(String seriesId, String imageUrl, String seriesName) {
         Series series = new Series(seriesId, imageUrl, seriesName);
-        SeriesApi seriesApi = new SeriesApi();
-        SeriesService seriesService = seriesApi.createSeriesService();
-        Call<Series> call = seriesService.createSeries(series);
+        SeriesListApi seriesListApi = new SeriesListApi();
+        SeriesListService seriesListService = seriesListApi.createSeriesService();
+        Call<Series> call = seriesListService.createSeries(series);
         call.enqueue(new Callback<Series>() {
             @Override
             public void onResponse(Call<Series> call, Response<Series> response) {
@@ -80,9 +80,9 @@ public class AddEditSeriesActivity extends AppCompatActivity {
 
     public void updateSeries(String id, String seriesId, String imageUrl, String title) {
         Series series = new Series(seriesId, imageUrl, title);
-        SeriesApi seriesApi = new SeriesApi();
-        SeriesService seriesService = seriesApi.createSeriesService();
-        Call<Void> call = seriesService.EditSeries(id, series);
+        SeriesListApi seriesListApi = new SeriesListApi();
+        SeriesListService seriesListService = seriesListApi.createSeriesService();
+        Call<Void> call = seriesListService.EditSeries(id, series);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

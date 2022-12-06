@@ -10,16 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.crud.series.Series;
-import com.example.crud.series.SeriesApi;
-import com.example.crud.series.SeriesService;
-
 import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class AddEditMovieActivity extends AppCompatActivity {
 
