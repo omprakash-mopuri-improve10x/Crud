@@ -96,6 +96,12 @@ public class MoviesActivity extends AppCompatActivity {
         });
     }
 
+    public void editMovie(Movie movie) {
+        Intent intent = new Intent(this, AddEditMovieActivity.class);
+        intent.putExtra("movie", movie);
+        startActivity(intent);
+    }
+
     public void setupMoviesRv() {
         moviesRv = findViewById(R.id.movies_rv);
         moviesRv.setLayoutManager(new GridLayoutManager(this, 2));
@@ -109,7 +115,7 @@ public class MoviesActivity extends AppCompatActivity {
 
             @Override
             public void onEdit(Movie movie) {
-
+                editMovie(movie);
             }
         });
         moviesRv.setAdapter(moviesAdapter);

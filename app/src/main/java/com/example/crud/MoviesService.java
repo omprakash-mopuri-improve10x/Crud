@@ -9,6 +9,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface MoviesService {
@@ -21,4 +22,7 @@ public interface MoviesService {
 
     @DELETE("omMovies/{id}")
     Call<Void> deleteMovie(@Path("id") String id);
+
+    @PUT("omMovies/{id}")
+    Call<Void> editMovie(@Path("id") String id, @Body Movie movie);
 }

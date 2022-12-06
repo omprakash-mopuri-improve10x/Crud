@@ -31,15 +31,22 @@ public class AddEditMovieActivity extends AppCompatActivity {
     public EditText movieNameTxt;
     public EditText imageUrlTxt;
     public EditText descriptionTxt;
+    public Movie movie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_movie);
         findViews();
-        getSupportActionBar().setTitle("Add Movie");
         fetchSeriesList();
         setupSeriesListSp();
+        if (getIntent().hasExtra("movie")) {
+            getSupportActionBar().setTitle("Edit Movie");
+            movie = (Movie) getIntent().getSerializableExtra("movie");
+            showData();
+        } else {
+            getSupportActionBar().setTitle("Add Movie");
+        }
     }
 
     @Override
@@ -57,7 +64,11 @@ public class AddEditMovieActivity extends AppCompatActivity {
             String imageUrl = imageUrlTxt.getText().toString();
             String movieName = movieNameTxt.getText().toString();
             String description = descriptionTxt.getText().toString();
-            addMovie(movieId, seriesId, imageUrl, movieName, description);
+            if (movie == null) {
+                addMovie(movieId, seriesId, imageUrl, movieName, description);
+            } else {
+                updateMovie(movie.id, movieId, seriesId, imageUrl, movieName, description);
+            }
             return true;
         } else {
             return super.onOptionsItemSelected(item);
@@ -71,7 +82,6 @@ public class AddEditMovieActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Series>>() {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
-                Toast.makeText(AddEditMovieActivity.this, "Successfully Completed", Toast.LENGTH_SHORT).show();
                 List<Series> seriesList1 = response.body();
                 customSeriesListAdapter.addAll(seriesList1);
             }
@@ -102,10 +112,36 @@ public class AddEditMovieActivity extends AppCompatActivity {
         });
     }
 
+    public void updateMovie(String id, String movieId, String seriesId, String imageUrl, String title, String description) {
+        Movie movie = new Movie(movieId, seriesId, imageUrl, title, description);
+        MoviesApi moviesApi = new MoviesApi();
+        MoviesService moviesService = moviesApi.createMoviesService();
+        Call<Void> call = moviesService.editMovie(id, movie);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Toast.makeText(AddEditMovieActivity.this, "Successfully updated a movie", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(AddEditMovieActivity.this, "Failed to update a movie", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void setupSeriesListSp() {
         seriesSp = findViewById(R.id.series_sp);
         customSeriesListAdapter = new CustomSeriesListAdapter(this, android.R.layout.simple_list_item_1, seriesList);
         seriesSp.setAdapter(customSeriesListAdapter);
+    }
+
+    public void showData() {
+        movieIdTxt.setText(movie.movieId);
+        movieNameTxt.setText(movie.title);
+        imageUrlTxt.setText(movie.imageUrl);
+        descriptionTxt.setText(movie.description);
     }
 
     public void findViews() {

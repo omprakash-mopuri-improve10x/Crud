@@ -41,6 +41,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
         holder.deleteIb.setOnClickListener(view -> {
             movieOnItemActionListener.onDelete(movie.id);
         });
+        holder.itemView.setOnClickListener(view -> {
+            movieOnItemActionListener.onEdit(movie);
+        });
     }
 
     @Override
