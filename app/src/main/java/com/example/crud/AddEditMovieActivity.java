@@ -84,6 +84,9 @@ public class AddEditMovieActivity extends AppCompatActivity {
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
                 List<Series> seriesList1 = response.body();
                 customSeriesListAdapter.addAll(seriesList1);
+                if (movie != null) {
+                    showData();
+                }
             }
 
             @Override
@@ -142,6 +145,12 @@ public class AddEditMovieActivity extends AppCompatActivity {
         movieNameTxt.setText(movie.title);
         imageUrlTxt.setText(movie.imageUrl);
         descriptionTxt.setText(movie.description);
+        for (int i = 0; i < customSeriesListAdapter.getCount(); i++) {
+            Series series = customSeriesListAdapter.getItem(i);
+            if (movie.seriesId.equals(series.seriesId)) {
+                seriesSp.setSelection(i);
+            }
+        }
     }
 
     public void findViews() {
