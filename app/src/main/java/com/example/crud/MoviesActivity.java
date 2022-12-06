@@ -1,11 +1,16 @@
 package com.example.crud;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,28 +31,43 @@ public class MoviesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies);
         getSupportActionBar().setTitle("Movies");
-        fetchData();
+        fetchMovies();
         setupMoviesRv();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.movies_menu, menu);
+        return true;
     }
 
-    public void fetchData() {
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.add) {
+            Intent intent = new Intent(this, AddEditMovieActivity.class);
+            startActivity(intent);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void fetchMovies() {
+        showProgressBar();
         MoviesApi moviesApi = new MoviesApi();
         MoviesService moviesService = moviesApi.createMoviesService();
         Call<List<Movie>> call = moviesService.fetchMovies();
         call.enqueue(new Callback<List<Movie>>() {
             @Override
             public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
+                hideProgressBar();
                 List<Movie> movies = response.body();
                 moviesAdapter.setData(movies);
             }
 
             @Override
             public void onFailure(Call<List<Movie>> call, Throwable t) {
+                hideProgressBar();
                 Toast.makeText(MoviesActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
             }
         });
@@ -59,5 +79,15 @@ public class MoviesActivity extends AppCompatActivity {
         moviesAdapter = new MoviesAdapter();
         moviesAdapter.setData(movieList);
         moviesRv.setAdapter(moviesAdapter);
+    }
+
+    public void showProgressBar() {
+        ProgressBar progressBar = findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    public void hideProgressBar() {
+        ProgressBar progressBar = findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.GONE);
     }
 }

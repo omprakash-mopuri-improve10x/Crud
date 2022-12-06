@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MovieViewHolder extends RecyclerView.ViewHolder {
 
-    public ImageView movieImageImg;
+    public ImageView movieImg;
     public TextView titleTxt;
 
     public MovieViewHolder(@NonNull View itemView) {
         super(itemView);
-        movieImageImg = itemView.findViewById(R.id.movie_image_img);
+        movieImg = itemView.findViewById(R.id.movie_img);
         titleTxt = itemView.findViewById(R.id.title_txt);
     }
 }

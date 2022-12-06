@@ -17,7 +17,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class DashboardsAdapter extends RecyclerView.Adapter<DashboardViewHolder> {
+public class DashboardAdapter extends RecyclerView.Adapter<DashboardViewHolder> {
 
     public ArrayList<Dashboard> dashboards;
 

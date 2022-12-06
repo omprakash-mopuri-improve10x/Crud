@@ -15,6 +15,13 @@
         android:theme="@style/Theme.CRUD"
         tools:targetApi="31">
         <activity
+            android:name=".AddEditMovieActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MoviesActivity"
             android:exported="false">
             <meta-data
@@ -64,7 +71,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".dashboard.DashboardsActivity"
+            android:name=".dashboard.DashboardActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
