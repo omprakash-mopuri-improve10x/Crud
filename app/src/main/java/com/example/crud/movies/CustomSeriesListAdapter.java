@@ -1,4 +1,4 @@
-package com.example.crud;
+package com.example.crud.movies;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package com.example.crud;
+package com.example.crud.movies;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

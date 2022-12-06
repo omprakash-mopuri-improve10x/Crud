@@ -1,4 +1,4 @@
-package com.example.crud;
+package com.example.crud.movies;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.example.crud.R;
 
 import java.util.ArrayList;
 import java.util.List;

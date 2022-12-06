@@ -1,4 +1,4 @@
-package com.example.crud;
+package com.example.crud.movies;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.crud.R;
 import com.example.crud.series.Series;
 import com.example.crud.series.SeriesListApi;
 import com.example.crud.series.SeriesListService;

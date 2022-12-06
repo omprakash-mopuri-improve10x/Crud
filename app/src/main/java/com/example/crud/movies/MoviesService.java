@@ -1,6 +1,6 @@
-package com.example.crud;
+package com.example.crud.movies;
 
-import com.example.crud.series.Series;
+import com.example.crud.movies.Movie;
 
 import java.util.List;
 
