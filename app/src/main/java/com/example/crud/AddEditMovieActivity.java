@@ -10,20 +10,30 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.crud.series.Series;
+import com.example.crud.series.SeriesListApi;
+import com.example.crud.series.SeriesListService;
+
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddEditMovieActivity extends AppCompatActivity {
 
     public Spinner seriesSp;
-    ArrayAdapter<String> arrayAdapter;
-    ArrayList<String> seriesList;
+    public CustomSeriesListAdapter customSeriesListAdapter;
+    public ArrayList<Series> seriesList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_movie);
         getSupportActionBar().setTitle("Add Movie");
-        setupData();
+       // setupData();
+        fetchSeriesList();
         setupSeriesListSp();
     }
 
@@ -43,20 +53,35 @@ public class AddEditMovieActivity extends AppCompatActivity {
         }
     }
 
+    public void fetchSeriesList() {
+        SeriesListApi seriesListApi = new SeriesListApi();
+        SeriesListService seriesListService = seriesListApi.createSeriesService();
+        Call<List<Series>> call = seriesListService.fetchSeriesList();
+        call.enqueue(new Callback<List<Series>>() {
+            @Override
+            public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
+                Toast.makeText(AddEditMovieActivity.this, "Successfully Completed", Toast.LENGTH_SHORT).show();
+                List<Series> seriesList1 = response.body();
+                customSeriesListAdapter.addAll(seriesList1);
+            }
+
+            @Override
+            public void onFailure(Call<List<Series>> call, Throwable t) {
+                Toast.makeText(AddEditMovieActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
      public void setupData() {
         seriesList = new ArrayList<>();
-        seriesList.add("Horror Movies");
-        seriesList.add("Horror Movies");
-        seriesList.add("Horror Movies");
-        seriesList.add("Horror Movies");
-        seriesList.add("Horror Movies");
-        seriesList.add("Horror Movies");
-        seriesList.add("Horror Movies");
+        Series series = new Series("1", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxgI5VTfmjiyUvz3N0CHzdHtroa1lWbrWFBA&usqp=CAU", "AlluArjun");
+        seriesList.add(series);
+        seriesList.add(series);
     }
 
     public void setupSeriesListSp() {
         seriesSp = findViewById(R.id.series_sp);
-        arrayAdapter = new ArrayAdapter<String>(this, R.layout.series_drop_down, seriesList);
-        seriesSp.setAdapter(arrayAdapter);
+        customSeriesListAdapter = new CustomSeriesListAdapter(this, android.R.layout.simple_list_item_1, seriesList);
+        seriesSp.setAdapter(customSeriesListAdapter);
     }
 }
