@@ -31,8 +31,13 @@ public class MoviesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies);
         getSupportActionBar().setTitle("Movies");
-        fetchMovies();
         setupMoviesRv();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchMovies();
     }
 
     @Override

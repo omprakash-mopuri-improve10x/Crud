@@ -21,4 +21,12 @@ public class Movie {
         this.imageUrl = imageUrl;
         this.title = title;
     }
+
+    public Movie(String movieId, String seriesId, String imageUrl, String title, String description) {
+        this.movieId = movieId;
+        this.seriesId = seriesId;
+        this.imageUrl = imageUrl;
+        this.title = title;
+        this.description = description;
+    }
 }

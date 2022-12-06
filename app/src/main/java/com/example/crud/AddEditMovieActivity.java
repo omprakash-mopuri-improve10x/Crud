@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -26,13 +27,17 @@ public class AddEditMovieActivity extends AppCompatActivity {
     public Spinner seriesSp;
     public CustomSeriesListAdapter customSeriesListAdapter;
     public ArrayList<Series> seriesList = new ArrayList<>();
+    public EditText movieIdTxt;
+    public EditText movieNameTxt;
+    public EditText imageUrlTxt;
+    public EditText descriptionTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_movie);
+        findViews();
         getSupportActionBar().setTitle("Add Movie");
-       // setupData();
         fetchSeriesList();
         setupSeriesListSp();
     }
@@ -46,7 +51,13 @@ public class AddEditMovieActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.done) {
-            Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
+            String movieId = movieIdTxt.getText().toString();
+            Series series = (Series) seriesSp.getSelectedItem();
+            String seriesId = series.seriesId;
+            String imageUrl = imageUrlTxt.getText().toString();
+            String movieName = movieNameTxt.getText().toString();
+            String description = descriptionTxt.getText().toString();
+            addMovie(movieId, seriesId, imageUrl, movieName, description);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
@@ -72,16 +83,35 @@ public class AddEditMovieActivity extends AppCompatActivity {
         });
     }
 
-     public void setupData() {
-        seriesList = new ArrayList<>();
-        Series series = new Series("1", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxgI5VTfmjiyUvz3N0CHzdHtroa1lWbrWFBA&usqp=CAU", "AlluArjun");
-        seriesList.add(series);
-        seriesList.add(series);
+    public void addMovie(String movieId, String seriesId, String imageUrl, String title, String description) {
+        Movie movie = new Movie(movieId, seriesId, imageUrl, title, description);
+        MoviesApi moviesApi = new MoviesApi();
+        MoviesService moviesService = moviesApi.createMoviesService();
+        Call<Movie> call = moviesService.createMovie(movie);
+        call.enqueue(new Callback<Movie>() {
+            @Override
+            public void onResponse(Call<Movie> call, Response<Movie> response) {
+                Toast.makeText(AddEditMovieActivity.this, "Successfully added a movie", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<Movie> call, Throwable t) {
+                Toast.makeText(AddEditMovieActivity.this, "Failed to add a movie", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void setupSeriesListSp() {
         seriesSp = findViewById(R.id.series_sp);
         customSeriesListAdapter = new CustomSeriesListAdapter(this, android.R.layout.simple_list_item_1, seriesList);
         seriesSp.setAdapter(customSeriesListAdapter);
+    }
+
+    public void findViews() {
+        movieIdTxt = findViewById(R.id.movie_id_txt);
+        movieNameTxt = findViewById(R.id.movie_name_txt);
+        imageUrlTxt = findViewById(R.id.image_url_txt);
+        descriptionTxt = findViewById(R.id.description_txt);
     }
 }
