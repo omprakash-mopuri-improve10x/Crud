@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.crud.Constants;
 import com.example.crud.R;
 
 import retrofit2.Call;
@@ -27,9 +28,9 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_series);
         findViews();
-        if (getIntent().hasExtra("series")) {
+        if (getIntent().hasExtra(Constants.KEY_SERIES)) {
             getSupportActionBar().setTitle("Edit series");
-            series = (Series) getIntent().getSerializableExtra("series");
+            series = (Series) getIntent().getSerializableExtra(Constants.KEY_SERIES);
             showData();
         } else {
             getSupportActionBar().setTitle("Add Series");

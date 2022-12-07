@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.series.Series;
 import com.example.crud.series.SeriesListApi;
@@ -40,9 +41,9 @@ public class AddEditMovieActivity extends AppCompatActivity {
         findViews();
         fetchSeriesList();
         setupSeriesListSp();
-        if (getIntent().hasExtra("movie")) {
+        if (getIntent().hasExtra(Constants.KEY_MOVIE)) {
             getSupportActionBar().setTitle("Edit Movie");
-            movie = (Movie) getIntent().getSerializableExtra("movie");
+            movie = (Movie) getIntent().getSerializableExtra(Constants.KEY_MOVIE);
             showData();
         } else {
             getSupportActionBar().setTitle("Add Movie");

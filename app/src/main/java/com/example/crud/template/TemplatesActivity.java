@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.crud.Constants;
 import com.example.crud.R;
 
 import java.util.ArrayList;
@@ -101,7 +102,7 @@ public class TemplatesActivity extends AppCompatActivity {
 
     public void editTemplate(Template template) {
         Intent intent = new Intent(this, AddEditTemplateActivity.class);
-        intent.putExtra("template", template);
+        intent.putExtra(Constants.KEY_TEMPLATE, template);
         startActivity(intent);
     }
 

@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.crud.Constants;
 import com.example.crud.R;
 
 import java.util.ArrayList;
@@ -100,7 +101,7 @@ public class MoviesActivity extends AppCompatActivity {
 
     public void editMovie(Movie movie) {
         Intent intent = new Intent(this, AddEditMovieActivity.class);
-        intent.putExtra("movie", movie);
+        intent.putExtra(Constants.KEY_MOVIE, movie);
         startActivity(intent);
     }
 
