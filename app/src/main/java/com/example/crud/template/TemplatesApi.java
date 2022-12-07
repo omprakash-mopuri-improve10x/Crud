@@ -1,5 +1,6 @@
 package com.example.crud.template;
 
+import com.example.crud.Constants;
 import com.example.crud.template.TemplatesService;
 
 import retrofit2.Retrofit;
@@ -9,7 +10,7 @@ public class TemplatesApi {
 
     public TemplatesService createTemplateService() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://crudcrud.com/api/479dd07f8c1d482e9219f7dcb48e25f4/")
+                .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         TemplatesService templatesService = retrofit.create(TemplatesService.class);
