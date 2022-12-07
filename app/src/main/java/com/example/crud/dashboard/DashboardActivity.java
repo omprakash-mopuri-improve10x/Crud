@@ -12,9 +12,9 @@ import java.util.ArrayList;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    public RecyclerView dashboardsRv;
-    public ArrayList<Dashboard> dashboardList;
-    public DashboardAdapter dashboardAdapter;
+    private RecyclerView dashboardsRv;
+    private ArrayList<Dashboard> dashboardList;
+    private DashboardAdapter dashboardAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class DashboardActivity extends AppCompatActivity {
         setupDashboardsRv();
     }
 
-    public void setupData() {
+    private void setupData() {
         dashboardList = new ArrayList<>();
         Dashboard dashboard = new Dashboard("https://i.blogs.es/5a3917/hero/450_1000.webp", "Messages");
         dashboardList.add(dashboard);
@@ -37,7 +37,7 @@ public class DashboardActivity extends AppCompatActivity {
         dashboardList.add(dashboard3);
     }
 
-    public void setupDashboardsRv() {
+    private void setupDashboardsRv() {
         dashboardsRv = findViewById(R.id.dashboards_rv);
         dashboardsRv.setLayoutManager(new LinearLayoutManager(this));
         dashboardAdapter = new DashboardAdapter();

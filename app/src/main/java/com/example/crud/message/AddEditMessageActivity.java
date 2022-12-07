@@ -18,10 +18,10 @@ import retrofit2.Response;
 
 public class AddEditMessageActivity extends AppCompatActivity {
 
-    public EditText nameTxt;
-    public EditText phoneNumberTxt;
-    public EditText messageTxt;
-    public Message message;
+    private EditText nameTxt;
+    private EditText phoneNumberTxt;
+    private EditText messageTxt;
+    private Message message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
         }
     }
 
-    public void addMessage(String name, String phoneNumber, String messageTxt) {
+    private void addMessage(String name, String phoneNumber, String messageTxt) {
         Message message = new Message(name, phoneNumber, messageTxt);
         MessagesApi messagesApi = new MessagesApi();
         MessagesService messagesService = messagesApi.createMessagesService();
@@ -79,7 +79,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
         });
     }
 
-    public void updateMessage(String id, String name, String phoneNumber, String messageTxt) {
+    private void updateMessage(String id, String name, String phoneNumber, String messageTxt) {
         Message message = new Message(name, phoneNumber, messageTxt);
         MessagesApi messagesApi = new MessagesApi();
         MessagesService messagesService = messagesApi.createMessagesService();
@@ -98,13 +98,13 @@ public class AddEditMessageActivity extends AppCompatActivity {
         });
     }
 
-    public void findViews() {
+    private void findViews() {
         nameTxt = findViewById(R.id.name_txt);
         phoneNumberTxt = findViewById(R.id.phone_number_txt);
         messageTxt = findViewById(R.id.message_txt);
     }
 
-    public void showData() {
+    private void showData() {
         nameTxt.setText(message.name);
         phoneNumberTxt.setText(message.phoneNumber);
         messageTxt.setText(message.messageText);

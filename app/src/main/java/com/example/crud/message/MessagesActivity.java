@@ -25,10 +25,10 @@ import retrofit2.Response;
 
 public class MessagesActivity extends AppCompatActivity {
 
-    public RecyclerView messagesRv;
-    public ArrayList<Message> messageList = new ArrayList<>();
-    public MessagesAdapter messagesAdapter;
-    public ProgressBar progressBar;
+    private RecyclerView messagesRv;
+    private ArrayList<Message> messageList = new ArrayList<>();
+    private MessagesAdapter messagesAdapter;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,17 +61,17 @@ public class MessagesActivity extends AppCompatActivity {
         }
     }
 
-    public void showProgressBar() {
+    private void showProgressBar() {
         progressBar = findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    public void hideProgressBar() {
+    private void hideProgressBar() {
         progressBar = findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.GONE);
     }
 
-    public void fetchMessages() {
+    private void fetchMessages() {
         showProgressBar();
         MessagesApi messagesApi = new MessagesApi();
         MessagesService messagesService = messagesApi.createMessagesService();
@@ -92,7 +92,7 @@ public class MessagesActivity extends AppCompatActivity {
         });
     }
 
-    public void deleteMessage(String id) {
+    private void deleteMessage(String id) {
         MessagesApi messagesApi = new MessagesApi();
         MessagesService messagesService = messagesApi.createMessagesService();
         Call<Void> call = messagesService.deleteMessage(id);
@@ -110,13 +110,13 @@ public class MessagesActivity extends AppCompatActivity {
         });
     }
 
-    public void editMessage(Message message) {
+    private void editMessage(Message message) {
         Intent intent = new Intent(this, AddEditMessageActivity.class);
         intent.putExtra(Constants.KEY_MESSAGE, message);
         startActivity(intent);
     }
 
-    public void setupMessagesRv() {
+    private void setupMessagesRv() {
         messagesRv = findViewById(R.id.messages_rv);
         messagesRv.setLayoutManager(new LinearLayoutManager(this));
         messagesAdapter = new MessagesAdapter();

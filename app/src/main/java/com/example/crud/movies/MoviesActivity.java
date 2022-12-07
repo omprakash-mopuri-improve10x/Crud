@@ -25,9 +25,9 @@ import retrofit2.Response;
 
 public class MoviesActivity extends AppCompatActivity {
 
-    public RecyclerView moviesRv;
-    public ArrayList<Movie> movieList = new ArrayList<>();
-    public MoviesAdapter moviesAdapter;
+    private RecyclerView moviesRv;
+    private ArrayList<Movie> movieList = new ArrayList<>();
+    private MoviesAdapter moviesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class MoviesActivity extends AppCompatActivity {
         }
     }
 
-    public void fetchMovies() {
+    private void fetchMovies() {
         showProgressBar();
         MoviesApi moviesApi = new MoviesApi();
         MoviesService moviesService = moviesApi.createMoviesService();
@@ -81,7 +81,7 @@ public class MoviesActivity extends AppCompatActivity {
         });
     }
 
-    public void deleteMovie(String id) {
+    private void deleteMovie(String id) {
         MoviesApi moviesApi = new MoviesApi();
         MoviesService moviesService = moviesApi.createMoviesService();
         Call<Void> call = moviesService.deleteMovie(id);
@@ -99,13 +99,13 @@ public class MoviesActivity extends AppCompatActivity {
         });
     }
 
-    public void editMovie(Movie movie) {
+    private void editMovie(Movie movie) {
         Intent intent = new Intent(this, AddEditMovieActivity.class);
         intent.putExtra(Constants.KEY_MOVIE, movie);
         startActivity(intent);
     }
 
-    public void setupMoviesRv() {
+    private void setupMoviesRv() {
         moviesRv = findViewById(R.id.movies_rv);
         moviesRv.setLayoutManager(new GridLayoutManager(this, 2));
         moviesAdapter = new MoviesAdapter();
@@ -124,12 +124,12 @@ public class MoviesActivity extends AppCompatActivity {
         moviesRv.setAdapter(moviesAdapter);
     }
 
-    public void showProgressBar() {
+    private void showProgressBar() {
         ProgressBar progressBar = findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    public void hideProgressBar() {
+    private void hideProgressBar() {
         ProgressBar progressBar = findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.GONE);
     }

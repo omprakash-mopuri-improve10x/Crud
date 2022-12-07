@@ -18,10 +18,10 @@ import retrofit2.Response;
 
 public class AddEditSeriesActivity extends AppCompatActivity {
 
-    public EditText seriesIdTxt;
-    public EditText seriesNameTxt;
-    public EditText imageUrlTxt;
-    public Series series;
+    private EditText seriesIdTxt;
+    private EditText seriesNameTxt;
+    private EditText imageUrlTxt;
+    private Series series;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         }
     }
 
-    public void addSeries(String seriesId, String imageUrl, String seriesName) {
+    private void addSeries(String seriesId, String imageUrl, String seriesName) {
         Series series = new Series(seriesId, imageUrl, seriesName);
         SeriesListApi seriesListApi = new SeriesListApi();
         SeriesListService seriesListService = seriesListApi.createSeriesService();
@@ -79,7 +79,7 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         });
     }
 
-    public void updateSeries(String id, String seriesId, String imageUrl, String title) {
+    private void updateSeries(String id, String seriesId, String imageUrl, String title) {
         Series series = new Series(seriesId, imageUrl, title);
         SeriesListApi seriesListApi = new SeriesListApi();
         SeriesListService seriesListService = seriesListApi.createSeriesService();
@@ -98,13 +98,13 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         });
     }
 
-    public void showData() {
+    private void showData() {
         seriesIdTxt.setText(series.seriesId);
         seriesNameTxt.setText(series.title);
         imageUrlTxt.setText(series.imageUrl);
     }
 
-    public void findViews() {
+    private void findViews() {
         seriesIdTxt = findViewById(R.id.series_id_txt);
         seriesNameTxt = findViewById(R.id.series_name_txt);
         imageUrlTxt = findViewById(R.id.image_url_txt);

@@ -25,10 +25,10 @@ import retrofit2.Response;
 
 public class SeriesListActivity extends AppCompatActivity {
 
-    public RecyclerView seriesListRv;
-    public ArrayList<Series> seriesList = new ArrayList<>();
-    public SeriesListAdapter seriesListAdapter;
-    public ProgressBar progressBar;
+    private RecyclerView seriesListRv;
+    private ArrayList<Series> seriesList = new ArrayList<>();
+    private SeriesListAdapter seriesListAdapter;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class SeriesListActivity extends AppCompatActivity {
         }
     }
 
-    public void fetchSeriesList() {
+    private void fetchSeriesList() {
         showProgressBar();
         SeriesListApi seriesListApi = new SeriesListApi();
         SeriesListService seriesListService = seriesListApi.createSeriesService();
@@ -82,7 +82,7 @@ public class SeriesListActivity extends AppCompatActivity {
         });
     }
 
-    public void deleteSeries(String id) {
+    private void deleteSeries(String id) {
         SeriesListApi seriesListApi = new SeriesListApi();
         SeriesListService seriesListService = seriesListApi.createSeriesService();
         Call<Void> call = seriesListService.deleteSeries(id);
@@ -100,13 +100,13 @@ public class SeriesListActivity extends AppCompatActivity {
         });
     }
 
-    public void editSeries(Series series) {
+    private void editSeries(Series series) {
         Intent intent = new Intent(this, AddEditSeriesActivity.class);
         intent.putExtra(Constants.KEY_SERIES, series);
         startActivity(intent);
     }
 
-    public void setupSeriesListRv() {
+    private void setupSeriesListRv() {
         seriesListRv = findViewById(R.id.series_list_rv);
         seriesListRv.setLayoutManager(new LinearLayoutManager(this));
         seriesListAdapter = new SeriesListAdapter();
@@ -125,12 +125,12 @@ public class SeriesListActivity extends AppCompatActivity {
         seriesListRv.setAdapter(seriesListAdapter);
     }
 
-    public void showProgressBar() {
+    private void showProgressBar() {
         progressBar = findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    public void hideProgressBar() {
+    private void hideProgressBar() {
         progressBar = findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.GONE);
     }

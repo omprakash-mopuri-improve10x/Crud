@@ -25,10 +25,10 @@ import retrofit2.Response;
 
 public class TemplatesActivity extends AppCompatActivity {
 
-    public RecyclerView templatesRv;
-    public ArrayList<Template> templateList = new ArrayList<>();
-    public TemplatesAdapter templatesAdapter;
-    public ProgressBar progressBar;
+    private RecyclerView templatesRv;
+    private ArrayList<Template> templateList = new ArrayList<>();
+    private TemplatesAdapter templatesAdapter;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

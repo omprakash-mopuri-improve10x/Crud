@@ -25,14 +25,14 @@ import retrofit2.Response;
 
 public class AddEditMovieActivity extends AppCompatActivity {
 
-    public Spinner seriesSp;
-    public CustomSeriesListAdapter customSeriesListAdapter;
-    public ArrayList<Series> seriesList = new ArrayList<>();
-    public EditText movieIdTxt;
-    public EditText movieNameTxt;
-    public EditText imageUrlTxt;
-    public EditText descriptionTxt;
-    public Movie movie;
+    private Spinner seriesSp;
+    private CustomSeriesListAdapter customSeriesListAdapter;
+    private ArrayList<Series> seriesList = new ArrayList<>();
+    private EditText movieIdTxt;
+    private EditText movieNameTxt;
+    private EditText imageUrlTxt;
+    private EditText descriptionTxt;
+    private Movie movie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +76,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
         }
     }
 
-    public void fetchSeriesList() {
+    private void fetchSeriesList() {
         SeriesListApi seriesListApi = new SeriesListApi();
         SeriesListService seriesListService = seriesListApi.createSeriesService();
         Call<List<Series>> call = seriesListService.fetchSeriesList();
@@ -97,7 +97,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
         });
     }
 
-    public void addMovie(String movieId, String seriesId, String imageUrl, String title, String description) {
+    private void addMovie(String movieId, String seriesId, String imageUrl, String title, String description) {
         Movie movie = new Movie(movieId, seriesId, imageUrl, title, description);
         MoviesApi moviesApi = new MoviesApi();
         MoviesService moviesService = moviesApi.createMoviesService();
@@ -116,7 +116,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
         });
     }
 
-    public void updateMovie(String id, String movieId, String seriesId, String imageUrl, String title, String description) {
+    private void updateMovie(String id, String movieId, String seriesId, String imageUrl, String title, String description) {
         Movie movie = new Movie(movieId, seriesId, imageUrl, title, description);
         MoviesApi moviesApi = new MoviesApi();
         MoviesService moviesService = moviesApi.createMoviesService();
@@ -135,13 +135,13 @@ public class AddEditMovieActivity extends AppCompatActivity {
         });
     }
 
-    public void setupSeriesListSp() {
+    private void setupSeriesListSp() {
         seriesSp = findViewById(R.id.series_sp);
         customSeriesListAdapter = new CustomSeriesListAdapter(this, android.R.layout.simple_list_item_1, seriesList);
         seriesSp.setAdapter(customSeriesListAdapter);
     }
 
-    public void showData() {
+    private void showData() {
         movieIdTxt.setText(movie.movieId);
         movieNameTxt.setText(movie.title);
         imageUrlTxt.setText(movie.imageUrl);
@@ -154,7 +154,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
         }
     }
 
-    public void findViews() {
+    private void findViews() {
         movieIdTxt = findViewById(R.id.movie_id_txt);
         movieNameTxt = findViewById(R.id.movie_name_txt);
         imageUrlTxt = findViewById(R.id.image_url_txt);

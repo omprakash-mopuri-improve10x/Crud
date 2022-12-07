@@ -12,9 +12,9 @@ import com.example.crud.R;
 
 public class DashboardViewHolder extends RecyclerView.ViewHolder {
 
-    public ImageView dashboardImg;
-    public TextView titleTxt;
-    public LinearLayout dashboardLayout;
+    ImageView dashboardImg;
+    TextView titleTxt;
+    LinearLayout dashboardLayout;
 
     public DashboardViewHolder(@NonNull View itemView) {
         super(itemView);

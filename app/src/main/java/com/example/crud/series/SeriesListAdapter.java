@@ -14,8 +14,8 @@ import java.util.List;
 
 public class SeriesListAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
 
-    public List<Series> seriesList;
-    public SeriesOnItemActionListener seriesOnItemActionListener;
+    private List<Series> seriesList;
+    private SeriesOnItemActionListener seriesOnItemActionListener;
 
     public void setSeriesOnItemActionListener(SeriesOnItemActionListener seriesOnItemActionListener) {
         this.seriesOnItemActionListener = seriesOnItemActionListener;

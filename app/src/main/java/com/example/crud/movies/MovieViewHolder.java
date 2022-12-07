@@ -12,9 +12,9 @@ import com.example.crud.R;
 
 public class MovieViewHolder extends RecyclerView.ViewHolder {
 
-    public ImageView movieImg;
-    public TextView titleTxt;
-    public ImageButton deleteIb;
+    ImageView movieImg;
+    TextView titleTxt;
+    ImageButton deleteIb;
 
     public MovieViewHolder(@NonNull View itemView) {
         super(itemView);
