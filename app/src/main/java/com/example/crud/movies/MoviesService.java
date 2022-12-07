@@ -1,7 +1,6 @@
 package com.example.crud.movies;
 
 import com.example.crud.Constants;
-import com.example.crud.movies.Movie;
 
 import java.util.List;
 
@@ -15,15 +14,15 @@ import retrofit2.http.Path;
 
 public interface MoviesService {
 
-    @GET(Constants.MOVIE_END_POINT)
+    @GET(Constants.MOVIES_END_POINT)
     Call<List<Movie>> fetchMovies();
 
-    @POST(Constants.MOVIE_END_POINT)
+    @POST(Constants.MOVIES_END_POINT)
     Call<Movie> createMovie(@Body Movie movie);
 
-    @DELETE(Constants.MOVIE_END_POINT + "/{id}")
+    @DELETE(Constants.MOVIES_END_POINT + "/{id}")
     Call<Void> deleteMovie(@Path("id") String id);
 
-    @PUT(Constants.MOVIE_END_POINT + "/{id}")
+    @PUT(Constants.MOVIES_END_POINT + "/{id}")
     Call<Void> editMovie(@Path("id") String id, @Body Movie movie);
 }

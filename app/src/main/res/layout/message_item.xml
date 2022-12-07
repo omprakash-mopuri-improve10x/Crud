@@ -43,6 +43,7 @@
                     android:id="@+id/phone_number_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:ellipsize="end"
                     android:lines="1"
                     android:text="TextView"
@@ -64,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:backgroundTint="#ECE9F3"
-            app:srcCompat="@android:drawable/btn_dialog" />
+            app:srcCompat="@drawable/ic_baseline_close_24" />
 
     </LinearLayout>
 

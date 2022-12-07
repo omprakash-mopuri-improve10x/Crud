@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:backgroundTint="#ECE9F3"
-            app:srcCompat="@android:drawable/btn_dialog" />
+            app:srcCompat="@drawable/ic_baseline_close_24" />
     </LinearLayout>
 
 </LinearLayout>

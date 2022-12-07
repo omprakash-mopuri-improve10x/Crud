@@ -10,5 +10,5 @@ public class Constants {
     public static final String MESSAGES_END_POINT = "omMessageHistory";
     public static final String TEMPLATES_END_POINT = "omTemplates";
     public static final String SERIES_END_POINT = "omSeries";
-    public static final String MOVIE_END_POINT = "omMovies";
+    public static final String MOVIES_END_POINT = "omMovies";
 }
