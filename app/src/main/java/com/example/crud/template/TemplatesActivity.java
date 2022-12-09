@@ -38,7 +38,7 @@ public class TemplatesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_templates);
-        Log.i("TemplatesActivity", "onCreate");
+        log("onCreate");
         getSupportActionBar().setTitle("Templates");
         progressBar = findViewById(R.id.progress_bar);
         setupCrudApi();
@@ -48,7 +48,7 @@ public class TemplatesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i("TemplatesActivity", "onResume");
+        log("onResume");
         fetchTemplates();
     }
 
@@ -144,5 +144,9 @@ public class TemplatesActivity extends AppCompatActivity {
 
     private void showMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void log(String message) {
+        Log.i("TemplatesActivity", message);
     }
 }

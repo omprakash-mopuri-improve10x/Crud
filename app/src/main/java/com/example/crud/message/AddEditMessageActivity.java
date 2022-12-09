@@ -31,7 +31,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_message);
-        Log.i("AddEditMessageActivity", "onCreate");
+        log("onCreate");
         findViews();
         setupCrudApi();
         if (getIntent().hasExtra(Constants.KEY_MESSAGE)) {
@@ -119,5 +119,9 @@ public class AddEditMessageActivity extends AppCompatActivity {
 
     private void showMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void log(String message) {
+        Log.i("AddEditMessagesActivity", message);
     }
 }

@@ -38,8 +38,7 @@ public class MoviesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies);
-        Log.i("MoviesActivity", "onCreate");
-        getSupportActionBar().setTitle("Movies");
+        log("onCreate");
         progressBar = findViewById(R.id.progress_bar);
         setupCrudApi();
         setupMoviesRv();
@@ -48,7 +47,7 @@ public class MoviesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i("MoviesActivity", "onResume");
+        log("onResume");
         fetchMovies();
     }
 
@@ -144,5 +143,9 @@ public class MoviesActivity extends AppCompatActivity {
 
     private void showMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void log(String message) {
+        Log.i("MoviesActivity", message);
     }
 }

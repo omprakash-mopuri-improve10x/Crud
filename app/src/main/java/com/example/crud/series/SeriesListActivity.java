@@ -38,7 +38,7 @@ public class SeriesListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_series_list);
-        Log.i("SeriesActivity", "onCreate");
+        log("onCreate");
         getSupportActionBar().setTitle("Series");
         progressBar = findViewById(R.id.progress_bar);
         setupCrudApi();
@@ -48,7 +48,7 @@ public class SeriesListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i("SeriesActivity", "onResume");
+        log("onResume");
         fetchSeriesList();
     }
 
@@ -144,5 +144,9 @@ public class SeriesListActivity extends AppCompatActivity {
 
     private void showMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void log(String message) {
+        Log.i("SeriesListActivity", message);
     }
 }

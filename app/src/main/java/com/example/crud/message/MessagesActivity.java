@@ -38,7 +38,7 @@ public class MessagesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
-        Log.i("MessagesActivity", "onCreate");
+        log("onCreate");
         getSupportActionBar().setTitle("Messages");
         progressBar = findViewById(R.id.progress_bar);
         setupCrudApi();
@@ -48,7 +48,7 @@ public class MessagesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i("MessagesActivity", "onResume");
+        log("onResume");
         fetchMessages();
     }
 
@@ -144,5 +144,9 @@ public class MessagesActivity extends AppCompatActivity {
 
     private void hideProgressBar() {
         progressBar.setVisibility(View.GONE);
+    }
+
+    private void log(String message) {
+        Log.i("MessagesActivity", message);
     }
 }
