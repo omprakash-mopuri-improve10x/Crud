@@ -40,6 +40,7 @@ public class TemplatesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_templates);
         Log.i("TemplatesActivity", "onCreate");
         getSupportActionBar().setTitle("Templates");
+        progressBar = findViewById(R.id.progress_bar);
         setupCrudApi();
         setupTemplatesRv();
     }
@@ -68,7 +69,7 @@ public class TemplatesActivity extends AppCompatActivity {
         }
     }
 
-    public void fetchTemplates() {
+    private void fetchTemplates() {
         showProgressBar();
         Call<List<Template>> call = crudService.fetchTemplates();
         call.enqueue(new Callback<List<Template>>() {
@@ -82,34 +83,34 @@ public class TemplatesActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Template>> call, Throwable t) {
                 hideProgressBar();
-                Toast.makeText(TemplatesActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
+                showMessage("Failed to load data");
             }
         });
     }
 
-    public void deleteTemplate(String id) {
+    private void deleteTemplate(String id) {
         Call<Void> call = crudService.deleteTemplate(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(TemplatesActivity.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
+                showMessage("Successfully deleted");
                 fetchTemplates();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(TemplatesActivity.this, "Failed to delete a template", Toast.LENGTH_SHORT).show();
+                showMessage("Failed to delete a template");
             }
         });
     }
 
-    public void editTemplate(Template template) {
+    private void editTemplate(Template template) {
         Intent intent = new Intent(this, AddEditTemplateActivity.class);
         intent.putExtra(Constants.KEY_TEMPLATE, template);
         startActivity(intent);
     }
 
-    public void setupTemplatesRv() {
+    private void setupTemplatesRv() {
         templatesRv = findViewById(R.id.templates_rv);
         templatesRv.setLayoutManager(new LinearLayoutManager(this));
         templatesAdapter = new TemplatesAdapter();
@@ -133,13 +134,15 @@ public class TemplatesActivity extends AppCompatActivity {
         crudService = crudApi.createCrudService();
     }
 
-    public void showProgressBar() {
-        progressBar = findViewById(R.id.progress_bar);
+    private void showProgressBar() {
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    public void hideProgressBar() {
-        progressBar = findViewById(R.id.progress_bar);
+    private void hideProgressBar() {
         progressBar.setVisibility(View.GONE);
+    }
+
+    private void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

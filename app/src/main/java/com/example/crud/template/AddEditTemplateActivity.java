@@ -68,13 +68,13 @@ public class AddEditTemplateActivity extends AppCompatActivity {
         call.enqueue(new Callback<Template>() {
             @Override
             public void onResponse(Call<Template> call, Response<Template> response) {
-                Toast.makeText(AddEditTemplateActivity.this, "Successfully added a template", Toast.LENGTH_SHORT).show();
+                showMessage("Successfully added a template");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Template> call, Throwable t) {
-                Toast.makeText(AddEditTemplateActivity.this, "Failed to add Template", Toast.LENGTH_SHORT).show();
+                showMessage("Failed to add Template");
             }
         });
     }
@@ -85,13 +85,13 @@ public class AddEditTemplateActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(AddEditTemplateActivity.this, "Successfully updated", Toast.LENGTH_SHORT).show();
+                showMessage("Successfully updated");Toast.makeText(AddEditTemplateActivity.this, "Successfully updated", Toast.LENGTH_SHORT).show();
                 finish();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(AddEditTemplateActivity.this, "Failed to update", Toast.LENGTH_SHORT).show();
+                showMessage("Failed to update");
             }
         });
     }
@@ -107,5 +107,9 @@ public class AddEditTemplateActivity extends AppCompatActivity {
 
     private void showData() {
         messageTxt.setText(template.messageTxt);
+    }
+
+    private void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

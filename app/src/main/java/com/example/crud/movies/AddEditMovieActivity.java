@@ -94,7 +94,7 @@ public class AddEditMovieActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Series>> call, Throwable t) {
-                Toast.makeText(AddEditMovieActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
+                showMessage("Failed to load data");
             }
         });
     }
@@ -105,13 +105,13 @@ public class AddEditMovieActivity extends AppCompatActivity {
         call.enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
-                Toast.makeText(AddEditMovieActivity.this, "Successfully added a movie", Toast.LENGTH_SHORT).show();
+                showMessage("Successfully added a movie");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Movie> call, Throwable t) {
-                Toast.makeText(AddEditMovieActivity.this, "Failed to add a movie", Toast.LENGTH_SHORT).show();
+                showMessage("Failed to add a movie");
             }
         });
     }
@@ -122,13 +122,13 @@ public class AddEditMovieActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(AddEditMovieActivity.this, "Successfully updated a movie", Toast.LENGTH_SHORT).show();
+                showMessage("Successfully updated a movie");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(AddEditMovieActivity.this, "Failed to update a movie", Toast.LENGTH_SHORT).show();
+                showMessage("Failed to update a movie");
             }
         });
     }
@@ -162,5 +162,9 @@ public class AddEditMovieActivity extends AppCompatActivity {
         movieNameTxt = findViewById(R.id.movie_name_txt);
         imageUrlTxt = findViewById(R.id.image_url_txt);
         descriptionTxt = findViewById(R.id.description_txt);
+    }
+
+    private void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

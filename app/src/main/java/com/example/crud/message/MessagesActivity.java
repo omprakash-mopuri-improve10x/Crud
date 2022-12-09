@@ -40,6 +40,7 @@ public class MessagesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_messages);
         Log.i("MessagesActivity", "onCreate");
         getSupportActionBar().setTitle("Messages");
+        progressBar = findViewById(R.id.progress_bar);
         setupCrudApi();
         setupMessagesRv();
     }
@@ -68,16 +69,6 @@ public class MessagesActivity extends AppCompatActivity {
         }
     }
 
-    private void showProgressBar() {
-        progressBar = findViewById(R.id.progress_bar);
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    private void hideProgressBar() {
-        progressBar = findViewById(R.id.progress_bar);
-        progressBar.setVisibility(View.GONE);
-    }
-
     private void fetchMessages() {
         showProgressBar();
         Call<List<Message>> call = crudService.fetchMessages();
@@ -92,7 +83,7 @@ public class MessagesActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Message>> call, Throwable t) {
                 hideProgressBar();
-                Toast.makeText(MessagesActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
+                showMessage("Failed to load data");
             }
         });
     }
@@ -102,13 +93,13 @@ public class MessagesActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(MessagesActivity.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
+                showMessage("Successfully deleted");
                 fetchMessages();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(MessagesActivity.this, "Failed to delete message", Toast.LENGTH_SHORT).show();
+                showMessage("Failed to delete message");
             }
         });
     }
@@ -141,5 +132,17 @@ public class MessagesActivity extends AppCompatActivity {
     private void setupCrudApi() {
         CrudApi crudApi = new CrudApi();
         crudService = crudApi.createCrudService();
+    }
+
+    private void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void showProgressBar() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar() {
+        progressBar.setVisibility(View.GONE);
     }
 }

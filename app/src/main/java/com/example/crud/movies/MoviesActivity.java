@@ -32,6 +32,7 @@ public class MoviesActivity extends AppCompatActivity {
     private ArrayList<Movie> movieList = new ArrayList<>();
     private MoviesAdapter moviesAdapter;
     private CrudService crudService;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class MoviesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movies);
         Log.i("MoviesActivity", "onCreate");
         getSupportActionBar().setTitle("Movies");
+        progressBar = findViewById(R.id.progress_bar);
         setupCrudApi();
         setupMoviesRv();
     }
@@ -81,7 +83,7 @@ public class MoviesActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Movie>> call, Throwable t) {
                 hideProgressBar();
-                Toast.makeText(MoviesActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
+                showMessage("Failed to load data");
             }
         });
     }
@@ -91,13 +93,13 @@ public class MoviesActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(MoviesActivity.this, "Successfully deleted a movie", Toast.LENGTH_SHORT).show();
+                showMessage("Successfully deleted a movie");
                 fetchMovies();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(MoviesActivity.this, "Failed to delete a movie", Toast.LENGTH_SHORT).show();
+                showMessage("Failed to delete a movie");
             }
         });
     }
@@ -133,12 +135,14 @@ public class MoviesActivity extends AppCompatActivity {
     }
 
     private void showProgressBar() {
-        ProgressBar progressBar = findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
     }
 
     private void hideProgressBar() {
-        ProgressBar progressBar = findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.GONE);
+    }
+
+    private void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

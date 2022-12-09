@@ -72,13 +72,13 @@ public class AddEditMessageActivity extends AppCompatActivity {
         call.enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
-                Toast.makeText(AddEditMessageActivity.this, "Successfully added a message", Toast.LENGTH_SHORT).show();
+                showMessage("Successfully added a message");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Message> call, Throwable t) {
-                Toast.makeText(AddEditMessageActivity.this, "Failed add message", Toast.LENGTH_SHORT).show();
+                showMessage("Failed add message");
             }
         });
     }
@@ -89,13 +89,13 @@ public class AddEditMessageActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(AddEditMessageActivity.this, "Successfully updated ", Toast.LENGTH_SHORT).show();
+                showMessage("Successfully updated ");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(AddEditMessageActivity.this, "Failed to update message", Toast.LENGTH_SHORT).show();
+                showMessage("Failed to update message");
             }
         });
     }
@@ -115,5 +115,9 @@ public class AddEditMessageActivity extends AppCompatActivity {
         nameTxt.setText(message.name);
         phoneNumberTxt.setText(message.phoneNumber);
         messageTxt.setText(message.messageText);
+    }
+
+    private void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

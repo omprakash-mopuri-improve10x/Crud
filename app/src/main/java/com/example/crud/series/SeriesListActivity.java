@@ -40,6 +40,7 @@ public class SeriesListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_series_list);
         Log.i("SeriesActivity", "onCreate");
         getSupportActionBar().setTitle("Series");
+        progressBar = findViewById(R.id.progress_bar);
         setupCrudApi();
         setupSeriesListRv();
     }
@@ -82,7 +83,7 @@ public class SeriesListActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Series>> call, Throwable t) {
                 hideProgressBar();
-                Toast.makeText(SeriesListActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
+                showMessage("Failed to load data");
             }
         });
     }
@@ -92,13 +93,13 @@ public class SeriesListActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(SeriesListActivity.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
+                showMessage("Successfully deleted");
                 fetchSeriesList();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(SeriesListActivity.this, "Failed to delete", Toast.LENGTH_SHORT).show();
+                showMessage("Failed to delete");
             }
         });
     }
@@ -134,12 +135,14 @@ public class SeriesListActivity extends AppCompatActivity {
     }
 
     private void showProgressBar() {
-        progressBar = findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
     }
 
     private void hideProgressBar() {
-        progressBar = findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.GONE);
+    }
+
+    private void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

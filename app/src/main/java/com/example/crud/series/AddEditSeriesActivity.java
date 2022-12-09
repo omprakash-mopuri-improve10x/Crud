@@ -72,13 +72,13 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         call.enqueue(new Callback<Series>() {
             @Override
             public void onResponse(Call<Series> call, Response<Series> response) {
-                Toast.makeText(AddEditSeriesActivity.this, "Successfully added a series", Toast.LENGTH_SHORT).show();
+                showMessage("Successfully added a series");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Series> call, Throwable t) {
-                Toast.makeText(AddEditSeriesActivity.this, "Failed to add a series", Toast.LENGTH_SHORT).show();
+                showMessage("Failed to add a series");
             }
         });
     }
@@ -89,13 +89,13 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(AddEditSeriesActivity.this, "Successfully updated a series", Toast.LENGTH_SHORT).show();
+                showMessage("Successfully updated a series");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(AddEditSeriesActivity.this, "Failed to update series", Toast.LENGTH_SHORT).show();
+                showMessage("Failed to update series");
             }
         });
     }
@@ -115,5 +115,9 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         seriesIdTxt = findViewById(R.id.series_id_txt);
         seriesNameTxt = findViewById(R.id.series_name_txt);
         imageUrlTxt = findViewById(R.id.image_url_txt);
+    }
+
+    private void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
