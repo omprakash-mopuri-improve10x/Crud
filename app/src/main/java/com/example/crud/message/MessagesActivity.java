@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.internet.CrudApi;
+import com.example.crud.internet.CrudService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,7 @@ public class MessagesActivity extends AppCompatActivity {
     private ArrayList<Message> messageList = new ArrayList<>();
     private MessagesAdapter messagesAdapter;
     private ProgressBar progressBar;
+    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class MessagesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_messages);
         Log.i("MessagesActivity", "onCreate");
         getSupportActionBar().setTitle("Messages");
+        setupCrudApi();
         setupMessagesRv();
     }
 
@@ -76,9 +80,7 @@ public class MessagesActivity extends AppCompatActivity {
 
     private void fetchMessages() {
         showProgressBar();
-        MessagesApi messagesApi = new MessagesApi();
-        MessagesService messagesService = messagesApi.createMessagesService();
-        Call<List<Message>> call = messagesService.fetchMessages();
+        Call<List<Message>> call = crudService.fetchMessages();
         call.enqueue(new Callback<List<Message>>() {
             @Override
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
@@ -96,9 +98,7 @@ public class MessagesActivity extends AppCompatActivity {
     }
 
     private void deleteMessage(String id) {
-        MessagesApi messagesApi = new MessagesApi();
-        MessagesService messagesService = messagesApi.createMessagesService();
-        Call<Void> call = messagesService.deleteMessage(id);
+        Call<Void> call = crudService.deleteMessage(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -136,5 +136,10 @@ public class MessagesActivity extends AppCompatActivity {
             }
         });
         messagesRv.setAdapter(messagesAdapter);
+    }
+
+    private void setupCrudApi() {
+        CrudApi crudApi = new CrudApi();
+        crudService = crudApi.createCrudService();
     }
 }

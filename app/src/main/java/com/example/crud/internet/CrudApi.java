@@ -1,18 +1,18 @@
-package com.example.crud.message;
+package com.example.crud.internet;
 
 import com.example.crud.Constants;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MessagesApi {
+public class CrudApi {
 
-    public MessagesService createMessagesService() {
+    public CrudService createCrudService() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        MessagesService messagesService = retrofit.create(MessagesService.class);
-        return messagesService;
+        CrudService crudService = retrofit.create(CrudService.class);
+        return crudService;
     }
 }

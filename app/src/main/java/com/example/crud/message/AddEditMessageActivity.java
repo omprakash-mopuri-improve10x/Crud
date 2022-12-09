@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.internet.CrudApi;
+import com.example.crud.internet.CrudService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +25,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
     private EditText phoneNumberTxt;
     private EditText messageTxt;
     private Message message;
+    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_edit_message);
         Log.i("AddEditMessageActivity", "onCreate");
         findViews();
+        setupCrudApi();
         if (getIntent().hasExtra(Constants.KEY_MESSAGE)) {
             getSupportActionBar().setTitle("Edit Message");
             message = (Message) getIntent().getSerializableExtra(Constants.KEY_MESSAGE);
@@ -64,9 +68,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
 
     private void addMessage(String name, String phoneNumber, String messageTxt) {
         Message message = new Message(name, phoneNumber, messageTxt);
-        MessagesApi messagesApi = new MessagesApi();
-        MessagesService messagesService = messagesApi.createMessagesService();
-        Call<Message> call = messagesService.createMessage(message);
+        Call<Message> call = crudService.createMessage(message);
         call.enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
@@ -83,9 +85,7 @@ public class AddEditMessageActivity extends AppCompatActivity {
 
     private void updateMessage(String id, String name, String phoneNumber, String messageTxt) {
         Message message = new Message(name, phoneNumber, messageTxt);
-        MessagesApi messagesApi = new MessagesApi();
-        MessagesService messagesService = messagesApi.createMessagesService();
-        Call<Void> call = messagesService.updateMessage(id, message);
+        Call<Void> call = crudService.updateMessage(id, message);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -98,6 +98,11 @@ public class AddEditMessageActivity extends AppCompatActivity {
                 Toast.makeText(AddEditMessageActivity.this, "Failed to update message", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void setupCrudApi() {
+        CrudApi crudApi = new CrudApi();
+        crudService = crudApi.createCrudService();
     }
 
     private void findViews() {
