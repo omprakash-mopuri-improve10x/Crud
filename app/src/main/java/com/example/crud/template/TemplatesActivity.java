@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.internet.CrudApi;
+import com.example.crud.internet.CrudService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,7 @@ public class TemplatesActivity extends AppCompatActivity {
     private ArrayList<Template> templateList = new ArrayList<>();
     private TemplatesAdapter templatesAdapter;
     private ProgressBar progressBar;
+    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class TemplatesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_templates);
         Log.i("TemplatesActivity", "onCreate");
         getSupportActionBar().setTitle("Templates");
+        setupCrudApi();
         setupTemplatesRv();
     }
 
@@ -66,9 +70,7 @@ public class TemplatesActivity extends AppCompatActivity {
 
     public void fetchTemplates() {
         showProgressBar();
-        TemplatesApi templatesApi = new TemplatesApi();
-        TemplatesService templatesService = templatesApi.createTemplateService();
-        Call<List<Template>> call = templatesService.fetchTemplates();
+        Call<List<Template>> call = crudService.fetchTemplates();
         call.enqueue(new Callback<List<Template>>() {
             @Override
             public void onResponse(Call<List<Template>> call, Response<List<Template>> response) {
@@ -86,9 +88,7 @@ public class TemplatesActivity extends AppCompatActivity {
     }
 
     public void deleteTemplate(String id) {
-        TemplatesApi templatesApi = new TemplatesApi();
-        TemplatesService templatesService = templatesApi.createTemplateService();
-        Call<Void> call = templatesService.deleteTemplate(id);
+        Call<Void> call = crudService.deleteTemplate(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -126,6 +126,11 @@ public class TemplatesActivity extends AppCompatActivity {
             }
         });
         templatesRv.setAdapter(templatesAdapter);
+    }
+
+    private void setupCrudApi() {
+        CrudApi crudApi = new CrudApi();
+        crudService = crudApi.createCrudService();
     }
 
     public void showProgressBar() {
