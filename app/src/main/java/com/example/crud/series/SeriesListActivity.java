@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.internet.CrudApi;
+import com.example.crud.internet.CrudService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +32,7 @@ public class SeriesListActivity extends AppCompatActivity {
     private ArrayList<Series> seriesList = new ArrayList<>();
     private SeriesListAdapter seriesListAdapter;
     private ProgressBar progressBar;
+    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class SeriesListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_series_list);
         Log.i("SeriesActivity", "onCreate");
         getSupportActionBar().setTitle("Series");
+        setupCrudApi();
         setupSeriesListRv();
     }
 
@@ -66,9 +70,7 @@ public class SeriesListActivity extends AppCompatActivity {
 
     private void fetchSeriesList() {
         showProgressBar();
-        SeriesListApi seriesListApi = new SeriesListApi();
-        SeriesListService seriesListService = seriesListApi.createSeriesService();
-        Call<List<Series>> call = seriesListService.fetchSeriesList();
+        Call<List<Series>> call = crudService.fetchSeriesList();
         call.enqueue(new Callback<List<Series>>() {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
@@ -86,9 +88,7 @@ public class SeriesListActivity extends AppCompatActivity {
     }
 
     private void deleteSeries(String id) {
-        SeriesListApi seriesListApi = new SeriesListApi();
-        SeriesListService seriesListService = seriesListApi.createSeriesService();
-        Call<Void> call = seriesListService.deleteSeries(id);
+        Call<Void> call = crudService.deleteSeries(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -126,6 +126,11 @@ public class SeriesListActivity extends AppCompatActivity {
             }
         });
         seriesListRv.setAdapter(seriesListAdapter);
+    }
+
+    private void setupCrudApi() {
+        CrudApi crudApi = new CrudApi();
+        crudService = crudApi.createCrudService();
     }
 
     private void showProgressBar() {

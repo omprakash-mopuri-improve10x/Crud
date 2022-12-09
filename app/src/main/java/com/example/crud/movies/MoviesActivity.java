@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.internet.CrudApi;
+import com.example.crud.internet.CrudService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,7 @@ public class MoviesActivity extends AppCompatActivity {
     private RecyclerView moviesRv;
     private ArrayList<Movie> movieList = new ArrayList<>();
     private MoviesAdapter moviesAdapter;
+    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class MoviesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movies);
         Log.i("MoviesActivity", "onCreate");
         getSupportActionBar().setTitle("Movies");
+        setupCrudApi();
         setupMoviesRv();
     }
 
@@ -65,9 +69,7 @@ public class MoviesActivity extends AppCompatActivity {
 
     private void fetchMovies() {
         showProgressBar();
-        MoviesApi moviesApi = new MoviesApi();
-        MoviesService moviesService = moviesApi.createMoviesService();
-        Call<List<Movie>> call = moviesService.fetchMovies();
+        Call<List<Movie>> call = crudService.fetchMovies();
         call.enqueue(new Callback<List<Movie>>() {
             @Override
             public void onResponse(Call<List<Movie>> call, Response<List<Movie>> response) {
@@ -85,9 +87,7 @@ public class MoviesActivity extends AppCompatActivity {
     }
 
     private void deleteMovie(String id) {
-        MoviesApi moviesApi = new MoviesApi();
-        MoviesService moviesService = moviesApi.createMoviesService();
-        Call<Void> call = moviesService.deleteMovie(id);
+        Call<Void> call = crudService.deleteMovie(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -125,6 +125,11 @@ public class MoviesActivity extends AppCompatActivity {
             }
         });
         moviesRv.setAdapter(moviesAdapter);
+    }
+
+    private void setupCrudApi() {
+        CrudApi crudApi = new CrudApi();
+        crudService = crudApi.createCrudService();
     }
 
     private void showProgressBar() {

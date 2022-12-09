@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.internet.CrudApi;
+import com.example.crud.internet.CrudService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +25,7 @@ public class AddEditSeriesActivity extends AppCompatActivity {
     private EditText seriesNameTxt;
     private EditText imageUrlTxt;
     private Series series;
+    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_edit_series);
         Log.i("AddEditSeriesActivity", "onCreate");
         findViews();
+        setupCrudApi();
         if (getIntent().hasExtra(Constants.KEY_SERIES)) {
             getSupportActionBar().setTitle("Edit series");
             series = (Series) getIntent().getSerializableExtra(Constants.KEY_SERIES);
@@ -64,9 +68,7 @@ public class AddEditSeriesActivity extends AppCompatActivity {
 
     private void addSeries(String seriesId, String imageUrl, String seriesName) {
         Series series = new Series(seriesId, imageUrl, seriesName);
-        SeriesListApi seriesListApi = new SeriesListApi();
-        SeriesListService seriesListService = seriesListApi.createSeriesService();
-        Call<Series> call = seriesListService.createSeries(series);
+        Call<Series> call = crudService.createSeries(series);
         call.enqueue(new Callback<Series>() {
             @Override
             public void onResponse(Call<Series> call, Response<Series> response) {
@@ -83,9 +85,7 @@ public class AddEditSeriesActivity extends AppCompatActivity {
 
     private void updateSeries(String id, String seriesId, String imageUrl, String title) {
         Series series = new Series(seriesId, imageUrl, title);
-        SeriesListApi seriesListApi = new SeriesListApi();
-        SeriesListService seriesListService = seriesListApi.createSeriesService();
-        Call<Void> call = seriesListService.EditSeries(id, series);
+        Call<Void> call = crudService.EditSeries(id, series);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -98,6 +98,11 @@ public class AddEditSeriesActivity extends AppCompatActivity {
                 Toast.makeText(AddEditSeriesActivity.this, "Failed to update series", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void setupCrudApi() {
+        CrudApi crudApi = new CrudApi();
+        crudService = crudApi.createCrudService();
     }
 
     private void showData() {
