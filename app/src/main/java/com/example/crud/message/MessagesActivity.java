@@ -59,7 +59,7 @@ public class MessagesActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.add) {
-            Intent intent = new Intent(this, AddEditMessageActivity.class);
+            Intent intent = new Intent(this, AddMessageActivity.class);
             startActivity(intent);
             return true;
         } else {
@@ -103,7 +103,7 @@ public class MessagesActivity extends BaseActivity {
     }
 
     private void editMessage(Message message) {
-        Intent intent = new Intent(this, AddEditMessageActivity.class);
+        Intent intent = new Intent(this, EditMessageActivity.class);
         intent.putExtra(Constants.KEY_MESSAGE, message);
         startActivity(intent);
     }
