@@ -59,7 +59,7 @@ public class SeriesListActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.add) {
-            Intent intent = new Intent(this, AddEditSeriesActivity.class);
+            Intent intent = new Intent(this, AddSeriesActivity.class);
             startActivity(intent);
             return true;
         } else {
@@ -103,7 +103,7 @@ public class SeriesListActivity extends BaseActivity {
     }
 
     private void editSeries(Series series) {
-        Intent intent = new Intent(this, AddEditSeriesActivity.class);
+        Intent intent = new Intent(this, EditSeriesActivity.class);
         intent.putExtra(Constants.KEY_SERIES, series);
         startActivity(intent);
     }
