@@ -1,19 +1,17 @@
 package com.example.crud.series;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
+import com.example.crud.base.BaseActivity;
 import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.internet.CrudApi;
@@ -26,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SeriesListActivity extends AppCompatActivity {
+public class SeriesListActivity extends BaseActivity {
 
     private RecyclerView seriesListRv;
     private ArrayList<Series> seriesList = new ArrayList<>();
@@ -83,7 +81,7 @@ public class SeriesListActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Series>> call, Throwable t) {
                 hideProgressBar();
-                showMessage("Failed to load data");
+                showToast("Failed to load data");
             }
         });
     }
@@ -93,13 +91,13 @@ public class SeriesListActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                showMessage("Successfully deleted");
+                showToast("Successfully deleted");
                 fetchSeriesList();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                showMessage("Failed to delete");
+                showToast("Failed to delete");
             }
         });
     }
@@ -140,13 +138,5 @@ public class SeriesListActivity extends AppCompatActivity {
 
     private void hideProgressBar() {
         progressBar.setVisibility(View.GONE);
-    }
-
-    private void showMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    private void log(String message) {
-        Log.i("SeriesListActivity", message);
     }
 }

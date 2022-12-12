@@ -1,19 +1,17 @@
 package com.example.crud.movies;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
+import com.example.crud.base.BaseActivity;
 import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.internet.CrudApi;
@@ -26,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MoviesActivity extends AppCompatActivity {
+public class MoviesActivity extends BaseActivity {
 
     private RecyclerView moviesRv;
     private ArrayList<Movie> movieList = new ArrayList<>();
@@ -82,7 +80,7 @@ public class MoviesActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Movie>> call, Throwable t) {
                 hideProgressBar();
-                showMessage("Failed to load data");
+                showToast("Failed to load data");
             }
         });
     }
@@ -92,13 +90,13 @@ public class MoviesActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                showMessage("Successfully deleted a movie");
+                showToast("Successfully deleted a movie");
                 fetchMovies();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                showMessage("Failed to delete a movie");
+                showToast("Failed to delete a movie");
             }
         });
     }
@@ -139,13 +137,5 @@ public class MoviesActivity extends AppCompatActivity {
 
     private void hideProgressBar() {
         progressBar.setVisibility(View.GONE);
-    }
-
-    private void showMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    private void log(String message) {
-        Log.i("MoviesActivity", message);
     }
 }
