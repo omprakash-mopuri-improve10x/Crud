@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.base.BaseActivity;
 import com.example.crud.internet.CrudApi;
 import com.example.crud.internet.CrudService;
 
@@ -19,7 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddEditSeriesActivity extends AppCompatActivity {
+public class AddEditSeriesActivity extends BaseActivity {
 
     private EditText seriesIdTxt;
     private EditText seriesNameTxt;
@@ -31,7 +32,7 @@ public class AddEditSeriesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_series);
-        Log.i("AddEditSeriesActivity", "onCreate");
+        log("onCreate");
         findViews();
         setupCrudApi();
         if (getIntent().hasExtra(Constants.KEY_SERIES)) {
@@ -72,13 +73,13 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         call.enqueue(new Callback<Series>() {
             @Override
             public void onResponse(Call<Series> call, Response<Series> response) {
-                showMessage("Successfully added a series");
+                showToast("Successfully added a series");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Series> call, Throwable t) {
-                showMessage("Failed to add a series");
+                showToast("Failed to add a series");
             }
         });
     }
@@ -89,13 +90,13 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                showMessage("Successfully updated a series");
+                showToast("Successfully updated a series");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                showMessage("Failed to update series");
+                showToast("Failed to update series");
             }
         });
     }
@@ -115,9 +116,5 @@ public class AddEditSeriesActivity extends AppCompatActivity {
         seriesIdTxt = findViewById(R.id.series_id_txt);
         seriesNameTxt = findViewById(R.id.series_name_txt);
         imageUrlTxt = findViewById(R.id.image_url_txt);
-    }
-
-    private void showMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

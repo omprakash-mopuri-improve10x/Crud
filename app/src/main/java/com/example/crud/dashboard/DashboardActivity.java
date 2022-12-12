@@ -8,10 +8,11 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.crud.R;
+import com.example.crud.base.BaseActivity;
 
 import java.util.ArrayList;
 
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardActivity extends BaseActivity {
 
     private RecyclerView dashboardsRv;
     private ArrayList<Dashboard> dashboardList;
@@ -21,7 +22,7 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        Log.i("DashboardActivity", "onCreate");
+        log("onCreate");
         getSupportActionBar().setTitle("Dashboard");
         setupData();
         setupDashboardsRv();

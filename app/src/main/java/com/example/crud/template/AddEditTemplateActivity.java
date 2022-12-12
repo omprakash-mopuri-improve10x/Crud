@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.base.BaseActivity;
 import com.example.crud.internet.CrudApi;
 import com.example.crud.internet.CrudService;
 
@@ -19,7 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddEditTemplateActivity extends AppCompatActivity {
+public class AddEditTemplateActivity extends BaseActivity {
 
     private EditText messageTxt;
     private Template template;
@@ -29,7 +30,7 @@ public class AddEditTemplateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_template);
-        Log.i("AddEditTemplateActivity", "onCreate");
+        log("onCreate");
         findViews();
         setupCrudApi();
         if (getIntent().hasExtra(Constants.KEY_TEMPLATE)) {
@@ -68,13 +69,13 @@ public class AddEditTemplateActivity extends AppCompatActivity {
         call.enqueue(new Callback<Template>() {
             @Override
             public void onResponse(Call<Template> call, Response<Template> response) {
-                showMessage("Successfully added a template");
+                showToast("Successfully added a template");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Template> call, Throwable t) {
-                showMessage("Failed to add Template");
+                showToast("Failed to add Template");
             }
         });
     }
@@ -85,13 +86,13 @@ public class AddEditTemplateActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                showMessage("Successfully updated");Toast.makeText(AddEditTemplateActivity.this, "Successfully updated", Toast.LENGTH_SHORT).show();
+                showToast("Successfully updated");Toast.makeText(AddEditTemplateActivity.this, "Successfully updated", Toast.LENGTH_SHORT).show();
                 finish();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                showMessage("Failed to update");
+                showToast("Failed to update");
             }
         });
     }
@@ -107,9 +108,5 @@ public class AddEditTemplateActivity extends AppCompatActivity {
 
     private void showData() {
         messageTxt.setText(template.messageTxt);
-    }
-
-    private void showMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

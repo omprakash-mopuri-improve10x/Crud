@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.crud.Constants;
 import com.example.crud.R;
+import com.example.crud.base.BaseActivity;
 import com.example.crud.internet.CrudApi;
 import com.example.crud.internet.CrudService;
 
@@ -19,7 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddEditMessageActivity extends AppCompatActivity {
+public class AddEditMessageActivity extends BaseActivity {
 
     private EditText nameTxt;
     private EditText phoneNumberTxt;
@@ -72,13 +73,13 @@ public class AddEditMessageActivity extends AppCompatActivity {
         call.enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
-                showMessage("Successfully added a message");
+                showToast("Successfully added a message");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Message> call, Throwable t) {
-                showMessage("Failed add message");
+                showToast("Failed add message");
             }
         });
     }
@@ -89,13 +90,13 @@ public class AddEditMessageActivity extends AppCompatActivity {
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                showMessage("Successfully updated ");
+                showToast("Successfully updated ");
                 finish();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                showMessage("Failed to update message");
+                showToast("Failed to update message");
             }
         });
     }
@@ -115,13 +116,5 @@ public class AddEditMessageActivity extends AppCompatActivity {
         nameTxt.setText(message.name);
         phoneNumberTxt.setText(message.phoneNumber);
         messageTxt.setText(message.messageText);
-    }
-
-    private void showMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    private void log(String message) {
-        Log.i("AddEditMessagesActivity", message);
     }
 }
