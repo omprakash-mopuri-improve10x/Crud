@@ -59,7 +59,7 @@ public class TemplatesActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.add) {
-            Intent intent = new Intent(this, AddEditTemplateActivity.class);
+            Intent intent = new Intent(this, AddTemplateActivity.class);
             startActivity(intent);
             return true;
         } else {
@@ -103,7 +103,7 @@ public class TemplatesActivity extends BaseActivity {
     }
 
     private void editTemplate(Template template) {
-        Intent intent = new Intent(this, AddEditTemplateActivity.class);
+        Intent intent = new Intent(this, EditTemplateActivity.class);
         intent.putExtra(Constants.KEY_TEMPLATE, template);
         startActivity(intent);
     }
