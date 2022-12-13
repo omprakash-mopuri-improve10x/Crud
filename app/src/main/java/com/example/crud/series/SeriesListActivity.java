@@ -30,23 +30,20 @@ public class SeriesListActivity extends BaseActivity {
     private ArrayList<Series> seriesList = new ArrayList<>();
     private SeriesListAdapter seriesListAdapter;
     private ProgressBar progressBar;
-    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_series_list);
-        log("onCreate");
         getSupportActionBar().setTitle("Series");
         progressBar = findViewById(R.id.progress_bar);
-        setupCrudApi();
+        setupSeriesListAdapter();
         setupSeriesListRv();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        log("onResume");
         fetchSeriesList();
     }
 
@@ -108,9 +105,7 @@ public class SeriesListActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    private void setupSeriesListRv() {
-        seriesListRv = findViewById(R.id.series_list_rv);
-        seriesListRv.setLayoutManager(new LinearLayoutManager(this));
+    private void setupSeriesListAdapter() {
         seriesListAdapter = new SeriesListAdapter();
         seriesListAdapter.setData(seriesList);
         seriesListAdapter.setSeriesOnItemActionListener(new SeriesOnItemActionListener() {
@@ -124,12 +119,12 @@ public class SeriesListActivity extends BaseActivity {
                 editSeries(series);
             }
         });
-        seriesListRv.setAdapter(seriesListAdapter);
     }
 
-    private void setupCrudApi() {
-        CrudApi crudApi = new CrudApi();
-        crudService = crudApi.createCrudService();
+    private void setupSeriesListRv() {
+        seriesListRv = findViewById(R.id.series_list_rv);
+        seriesListRv.setLayoutManager(new LinearLayoutManager(this));
+        seriesListRv.setAdapter(seriesListAdapter);
     }
 
     private void showProgressBar() {

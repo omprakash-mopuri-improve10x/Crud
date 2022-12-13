@@ -22,26 +22,18 @@ public class BaseAddEditSeriesActivity extends BaseActivity {
     protected EditText seriesIdTxt;
     protected EditText seriesNameTxt;
     protected EditText imageUrlTxt;
-    protected CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_series);
-        log("onCreate");
         findViews();
-        setupCrudApi();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.add_edit_series_menu, menu);
         return true;
-    }
-
-    private void setupCrudApi() {
-        CrudApi crudApi = new CrudApi();
-        crudService = crudApi.createCrudService();
     }
 
     private void findViews() {

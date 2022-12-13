@@ -30,23 +30,20 @@ public class MessagesActivity extends BaseActivity {
     private ArrayList<Message> messageList = new ArrayList<>();
     private MessagesAdapter messagesAdapter;
     private ProgressBar progressBar;
-    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
-        log("onCreate");
         getSupportActionBar().setTitle("Messages");
         progressBar = findViewById(R.id.progress_bar);
-        setupCrudApi();
+        setupMessagesAdapter();
         setupMessagesRv();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        log("onResume");
         fetchMessages();
     }
 
@@ -108,9 +105,7 @@ public class MessagesActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    private void setupMessagesRv() {
-        messagesRv = findViewById(R.id.messages_rv);
-        messagesRv.setLayoutManager(new LinearLayoutManager(this));
+    private void setupMessagesAdapter() {
         messagesAdapter = new MessagesAdapter();
         messagesAdapter.setData(messageList);
         messagesAdapter.setOnItemClickListener(new OnItemActionListener() {
@@ -124,12 +119,12 @@ public class MessagesActivity extends BaseActivity {
                 editMessage(message);
             }
         });
-        messagesRv.setAdapter(messagesAdapter);
     }
 
-    private void setupCrudApi() {
-        CrudApi crudApi = new CrudApi();
-        crudService = crudApi.createCrudService();
+    private void setupMessagesRv() {
+        messagesRv = findViewById(R.id.messages_rv);
+        messagesRv.setLayoutManager(new LinearLayoutManager(this));
+        messagesRv.setAdapter(messagesAdapter);
     }
 
     private void showProgressBar() {

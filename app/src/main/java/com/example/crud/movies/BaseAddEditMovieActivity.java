@@ -32,15 +32,12 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     protected EditText imageUrlTxt;
     protected EditText descriptionTxt;
     protected Movie movie;
-    protected CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_movie);
-        log("onCreate");
         findViews();
-        setupCrudApi();
         fetchSeriesList();
         setupSeriesListSp();
     }
@@ -70,14 +67,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         });
     }
 
-    private void setupCrudApi() {
-        CrudApi crudApi = new CrudApi();
-        crudService = crudApi.createCrudService();
-    }
-
     private void setupSeriesListSp() {
-        // add to findViews
-        seriesSp = findViewById(R.id.series_sp);
         customSeriesListAdapter = new CustomSeriesListAdapter(this, android.R.layout.simple_list_item_1, seriesList);
         seriesSp.setAdapter(customSeriesListAdapter);
     }
@@ -96,6 +86,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     }
 
     private void findViews() {
+        seriesSp = findViewById(R.id.series_sp);
         movieIdTxt = findViewById(R.id.movie_id_txt);
         movieNameTxt = findViewById(R.id.movie_name_txt);
         imageUrlTxt = findViewById(R.id.image_url_txt);

@@ -30,23 +30,20 @@ public class TemplatesActivity extends BaseActivity {
     private ArrayList<Template> templateList = new ArrayList<>();
     private TemplatesAdapter templatesAdapter;
     private ProgressBar progressBar;
-    private CrudService crudService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_templates);
-        log("onCreate");
         getSupportActionBar().setTitle("Templates");
         progressBar = findViewById(R.id.progress_bar);
-        setupCrudApi();
+        setupTemplatesAdapter();
         setupTemplatesRv();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        log("onResume");
         fetchTemplates();
     }
 
@@ -108,9 +105,7 @@ public class TemplatesActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    private void setupTemplatesRv() {
-        templatesRv = findViewById(R.id.templates_rv);
-        templatesRv.setLayoutManager(new LinearLayoutManager(this));
+    private void setupTemplatesAdapter() {
         templatesAdapter = new TemplatesAdapter();
         templatesAdapter.setData(templateList);
         templatesAdapter.setTemplateOnItemActionListener(new TemplateOnItemActionListener() {
@@ -124,12 +119,12 @@ public class TemplatesActivity extends BaseActivity {
                 editTemplate(template);
             }
         });
-        templatesRv.setAdapter(templatesAdapter);
     }
 
-    private void setupCrudApi() {
-        CrudApi crudApi = new CrudApi();
-        crudService = crudApi.createCrudService();
+    private void setupTemplatesRv() {
+        templatesRv = findViewById(R.id.templates_rv);
+        templatesRv.setLayoutManager(new LinearLayoutManager(this));
+        templatesRv.setAdapter(templatesAdapter);
     }
 
     private void showProgressBar() {
