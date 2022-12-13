@@ -19,12 +19,14 @@ import java.util.ArrayList;
 
 public class DashboardAdapter extends RecyclerView.Adapter<DashboardViewHolder> {
 
+    // Rename dashboards
     private ArrayList<Dashboard> dashboards;
 
     public void setData(ArrayList<Dashboard> dashboards) {
         this.dashboards = dashboards;
         notifyDataSetChanged();
     }
+
     @NonNull
     @Override
     public DashboardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

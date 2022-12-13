@@ -76,6 +76,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     }
 
     private void setupSeriesListSp() {
+        // add to findViews
         seriesSp = findViewById(R.id.series_sp);
         customSeriesListAdapter = new CustomSeriesListAdapter(this, android.R.layout.simple_list_item_1, seriesList);
         seriesSp.setAdapter(customSeriesListAdapter);

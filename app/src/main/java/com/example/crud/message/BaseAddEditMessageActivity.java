@@ -39,6 +39,7 @@ public class BaseAddEditMessageActivity extends BaseActivity {
         return true;
     }
 
+    // Rename method
     private void setupCrudApi() {
         CrudApi crudApi = new CrudApi();
         crudService = crudApi.createCrudService();
