@@ -1,15 +1,15 @@
 package com.example.crud.dashboard;
 
-public class Dashboard {
+public class DashboardItem {
 
     public String imageUrl;
     public String title;
 
-    public Dashboard() {
+    public DashboardItem() {
 
     }
 
-    public Dashboard(String imageUrl, String title) {
+    public DashboardItem(String imageUrl, String title) {
         this.imageUrl = imageUrl;
         this.title = title;
     }

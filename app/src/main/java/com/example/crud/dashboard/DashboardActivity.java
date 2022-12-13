@@ -12,10 +12,9 @@ import java.util.ArrayList;
 
 public class DashboardActivity extends BaseActivity {
 
-    //rename dashboardsRv
-    private RecyclerView dashboardsRv;
-    private ArrayList<Dashboard> dashboardList;
-    private DashboardAdapter dashboardAdapter;
+    private RecyclerView dashboardItemsRv;
+    private ArrayList<DashboardItem> dashboardItemList;
+    private DashboardItemsAdapter dashboardItemsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,22 +26,22 @@ public class DashboardActivity extends BaseActivity {
     }
 
     private void setupData() {
-        dashboardList = new ArrayList<>();
-        Dashboard dashboard = new Dashboard("https://i.blogs.es/5a3917/hero/450_1000.webp", "Messages");
-        dashboardList.add(dashboard);
-        Dashboard dashboard1 = new Dashboard("https://associationsnow.com/wp-content/uploads/2018/08/GettyImages-625873026.jpg", "Templates");
-        dashboardList.add(dashboard1);
-        Dashboard dashboard2 = new Dashboard("https://earnthis.net/wp-content/uploads/2014/02/hp-posters.jpg", "Series");
-        dashboardList.add(dashboard2);
-        Dashboard dashboard3 = new Dashboard("https://static.wikia.nocookie.net/ultimatepopculture/images/b/b4/At-the-movies.jpg/revision/latest?cb=20191012032527", "Movies");
-        dashboardList.add(dashboard3);
+        dashboardItemList = new ArrayList<>();
+        DashboardItem dashboard = new DashboardItem("https://i.blogs.es/5a3917/hero/450_1000.webp", "Messages");
+        dashboardItemList.add(dashboard);
+        DashboardItem dashboard1 = new DashboardItem("https://associationsnow.com/wp-content/uploads/2018/08/GettyImages-625873026.jpg", "Templates");
+        dashboardItemList.add(dashboard1);
+        DashboardItem dashboard2 = new DashboardItem("https://earnthis.net/wp-content/uploads/2014/02/hp-posters.jpg", "Series");
+        dashboardItemList.add(dashboard2);
+        DashboardItem dashboard3 = new DashboardItem("https://static.wikia.nocookie.net/ultimatepopculture/images/b/b4/At-the-movies.jpg/revision/latest?cb=20191012032527", "Movies");
+        dashboardItemList.add(dashboard3);
     }
 
     private void setupDashboardRv() {
-        dashboardsRv = findViewById(R.id.dashboards_rv);
-        dashboardsRv.setLayoutManager(new LinearLayoutManager(this));
-        dashboardAdapter = new DashboardAdapter();
-        dashboardAdapter.setData(dashboardList);
-        dashboardsRv.setAdapter(dashboardAdapter);
+        dashboardItemsRv = findViewById(R.id.dashboard_items_rv);
+        dashboardItemsRv.setLayoutManager(new LinearLayoutManager(this));
+        dashboardItemsAdapter = new DashboardItemsAdapter();
+        dashboardItemsAdapter.setData(dashboardItemList);
+        dashboardItemsRv.setAdapter(dashboardItemsAdapter);
     }
 }

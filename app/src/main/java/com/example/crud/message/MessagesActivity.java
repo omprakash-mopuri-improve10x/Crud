@@ -36,7 +36,7 @@ public class MessagesActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
         getSupportActionBar().setTitle("Messages");
-        progressBar = findViewById(R.id.progress_bar);
+        findViews();
         setupMessagesAdapter();
         setupMessagesRv();
     }
@@ -122,9 +122,13 @@ public class MessagesActivity extends BaseActivity {
     }
 
     private void setupMessagesRv() {
-        messagesRv = findViewById(R.id.messages_rv);
         messagesRv.setLayoutManager(new LinearLayoutManager(this));
         messagesRv.setAdapter(messagesAdapter);
+    }
+
+    private void findViews() {
+        messagesRv = findViewById(R.id.messages_rv);
+        progressBar = findViewById(R.id.progress_bar);
     }
 
     private void showProgressBar() {

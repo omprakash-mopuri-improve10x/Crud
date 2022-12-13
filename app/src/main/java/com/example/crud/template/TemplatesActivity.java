@@ -36,7 +36,7 @@ public class TemplatesActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_templates);
         getSupportActionBar().setTitle("Templates");
-        progressBar = findViewById(R.id.progress_bar);
+        findViews();
         setupTemplatesAdapter();
         setupTemplatesRv();
     }
@@ -122,9 +122,13 @@ public class TemplatesActivity extends BaseActivity {
     }
 
     private void setupTemplatesRv() {
-        templatesRv = findViewById(R.id.templates_rv);
         templatesRv.setLayoutManager(new LinearLayoutManager(this));
         templatesRv.setAdapter(templatesAdapter);
+    }
+
+    private void findViews() {
+        templatesRv = findViewById(R.id.templates_rv);
+        progressBar = findViewById(R.id.progress_bar);
     }
 
     private void showProgressBar() {

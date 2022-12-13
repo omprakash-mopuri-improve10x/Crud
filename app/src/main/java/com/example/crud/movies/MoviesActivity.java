@@ -35,7 +35,7 @@ public class MoviesActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movies);
-        progressBar = findViewById(R.id.progress_bar);
+        findViews();
         setupMoviesAdapter();
         setupMoviesRv();
     }
@@ -121,9 +121,13 @@ public class MoviesActivity extends BaseActivity {
     }
 
     private void setupMoviesRv() {
-        moviesRv = findViewById(R.id.movies_rv);
         moviesRv.setLayoutManager(new GridLayoutManager(this, 2));
         moviesRv.setAdapter(moviesAdapter);
+    }
+
+    private void findViews() {
+        moviesRv = findViewById(R.id.movies_rv);
+        progressBar = findViewById(R.id.progress_bar);
     }
 
     private void showProgressBar() {
