@@ -52,7 +52,7 @@ public interface CrudService {
     Call<Void> deleteSeries(@Path("id") String id);
 
     @PUT(Constants.SERIES_END_POINT + "/{id}")
-    Call<Void> EditSeries(@Path("id") String id, @Body Series series);
+    Call<Void> updateSeries(@Path("id") String id, @Body Series series);
 
     @GET(Constants.MOVIES_END_POINT)
     Call<List<Movie>> fetchMovies();
@@ -64,5 +64,5 @@ public interface CrudService {
     Call<Void> deleteMovie(@Path("id") String id);
 
     @PUT(Constants.MOVIES_END_POINT + "/{id}")
-    Call<Void> editMovie(@Path("id") String id, @Body Movie movie);
+    Call<Void> updateMovie(@Path("id") String id, @Body Movie movie);
 }
