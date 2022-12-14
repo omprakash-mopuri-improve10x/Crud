@@ -48,6 +48,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         return true;
     }
 
+    // Todo: Rename fetchSeriesList() to fetchSeriesItems()
     private void fetchSeriesList() {
         Call<List<Series>> call = crudService.fetchSeriesList();
         call.enqueue(new Callback<List<Series>>() {
@@ -67,6 +68,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         });
     }
 
+    // Todo: Rename fetchSeriesListSp() to fetchSeriesItemsSp()
     private void setupSeriesListSp() {
         customSeriesListAdapter = new CustomSeriesListAdapter(this, android.R.layout.simple_list_item_1, seriesList);
         seriesSp.setAdapter(customSeriesListAdapter);

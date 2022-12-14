@@ -10,10 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.crud.R;
 
+// Todo: Rename the class DashboardViewHolder to DashboardItemViewHolder
 public class DashboardViewHolder extends RecyclerView.ViewHolder {
 
     ImageView dashboardImg;
     TextView titleTxt;
+    // Todo: Remove "dashboardLayout"
     LinearLayout dashboardLayout;
 
     public DashboardViewHolder(@NonNull View itemView) {

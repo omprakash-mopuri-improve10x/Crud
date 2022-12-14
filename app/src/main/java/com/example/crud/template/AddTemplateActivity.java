@@ -16,7 +16,7 @@ public class AddTemplateActivity extends BaseAddEditTemplateActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle("Add template");
+        getSupportActionBar().setTitle("Add Template");
     }
 
     @Override

@@ -27,6 +27,7 @@ import retrofit2.Response;
 public class MessagesActivity extends BaseActivity {
 
     private RecyclerView messagesRv;
+    // Todo: Rename messageList to messages
     private ArrayList<Message> messageList = new ArrayList<>();
     private MessagesAdapter messagesAdapter;
     private ProgressBar progressBar;

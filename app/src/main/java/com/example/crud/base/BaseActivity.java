@@ -32,6 +32,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void log(String message) {
+        // Todo: Instead of "getLocalClassName()" change to "getClass().getSimpleName()"
         Log.i(this.getLocalClassName(), message);
     }
 

@@ -13,6 +13,7 @@ public class MessageViewHolder extends RecyclerView.ViewHolder {
 
     TextView nameTxt;
     TextView phoneNumberTxt;
+    // Todo: Rename messageTxt to messageTextTxt
     TextView messageTxt;
     ImageButton deleteIb;
 
