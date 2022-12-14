@@ -10,11 +10,9 @@ public class Message implements Serializable {
     public String id;
     public String name;
     public String phoneNumber;
-    @SerializedName("messageText")
     public String messageText;
 
     public Message() {
-
     }
 
     public Message(String name, String phoneNumber, String messageText) {

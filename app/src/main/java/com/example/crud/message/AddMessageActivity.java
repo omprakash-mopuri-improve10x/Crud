@@ -25,7 +25,7 @@ public class AddMessageActivity extends BaseAddEditMessageActivity{
             String name = nameTxt.getText().toString();
             String phoneNumber = phoneNumberTxt.getText().toString();
             String message = messageTxt.getText().toString();
-                addMessage(name, phoneNumber, message);
+            addMessage(name, phoneNumber, message);
             return true;
         } else {
             return super.onOptionsItemSelected(item);

@@ -12,7 +12,6 @@ public class Template implements Serializable {
     public String messageTxt;
 
     public Template() {
-
     }
 
     public Template(String messageTxt) {

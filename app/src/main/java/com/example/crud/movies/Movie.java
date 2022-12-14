@@ -16,12 +16,6 @@ public class Movie implements Serializable {
     public String description;
 
     public Movie() {
-
-    }
-
-    public Movie(String imageUrl, String title) {
-        this.imageUrl = imageUrl;
-        this.title = title;
     }
 
     public Movie(String movieId, String seriesId, String imageUrl, String title, String description) {

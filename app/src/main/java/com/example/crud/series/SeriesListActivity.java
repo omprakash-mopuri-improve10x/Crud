@@ -84,16 +84,19 @@ public class SeriesListActivity extends BaseActivity {
     }
 
     private void deleteSeries(String id) {
+        showProgressBar();
         Call<Void> call = crudService.deleteSeries(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                hideProgressBar();
                 showToast("Successfully deleted");
                 fetchSeriesList();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                hideProgressBar();
                 showToast("Failed to delete");
             }
         });

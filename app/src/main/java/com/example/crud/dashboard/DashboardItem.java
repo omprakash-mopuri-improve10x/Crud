@@ -6,7 +6,6 @@ public class DashboardItem {
     public String title;
 
     public DashboardItem() {
-
     }
 
     public DashboardItem(String imageUrl, String title) {

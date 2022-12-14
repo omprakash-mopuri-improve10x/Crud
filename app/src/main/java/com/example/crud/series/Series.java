@@ -14,7 +14,6 @@ public class Series implements Serializable {
     public String title;
 
     public Series() {
-
     }
 
     public Series(String seriesId, String imageUrl, String title) {
