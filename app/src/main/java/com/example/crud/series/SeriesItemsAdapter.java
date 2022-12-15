@@ -12,8 +12,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-// Todo: Rename The class SeriesListAdapter to SeriesItemsAdapter
-public class SeriesItemsAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
+public class SeriesItemsAdapter extends RecyclerView.Adapter<SeriesItemViewHolder> {
 
     private List<SeriesItem> seriesItems;
     private SeriesOnItemActionListener seriesOnItemActionListener;
@@ -29,14 +28,14 @@ public class SeriesItemsAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
 
     @NonNull
     @Override
-    public SeriesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SeriesItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.series_item, parent, false);
-        SeriesViewHolder seriesViewHolder = new SeriesViewHolder(view);
-        return seriesViewHolder;
+        SeriesItemViewHolder seriesItemViewHolder = new SeriesItemViewHolder(view);
+        return seriesItemViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SeriesViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SeriesItemViewHolder holder, int position) {
         SeriesItem series = seriesItems.get(position);
         holder.titleTxt.setText(series.title);
         if (series.imageUrl != null && series.imageUrl.isEmpty() == false) {
