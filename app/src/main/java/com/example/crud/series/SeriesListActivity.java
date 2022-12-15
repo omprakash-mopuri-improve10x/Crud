@@ -36,7 +36,7 @@ public class SeriesListActivity extends BaseActivity {
         setContentView(R.layout.activity_series_list);
         getSupportActionBar().setTitle("Series");
         findViews();
-        setupSeriesListAdapter();
+        setupSeriesItemsAdapter();
         setupSeriesListRv();
     }
 
@@ -107,8 +107,7 @@ public class SeriesListActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    // Todo: Rename the method setupSeriesListAdapter() to setupSeriesItemsAdapter()
-    private void setupSeriesListAdapter() {
+    private void setupSeriesItemsAdapter() {
         seriesListAdapter = new SeriesListAdapter();
         seriesListAdapter.setData(seriesItems);
         seriesListAdapter.setSeriesOnItemActionListener(new SeriesOnItemActionListener() {
