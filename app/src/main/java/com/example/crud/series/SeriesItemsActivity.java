@@ -24,7 +24,7 @@ import retrofit2.Response;
 
 public class SeriesItemsActivity extends BaseActivity {
 
-    private RecyclerView seriesListRv;
+    private RecyclerView seriesItemsRv;
     private ArrayList<SeriesItem> seriesItems = new ArrayList<>();
     private SeriesItemsAdapter seriesItemsAdapter;
     private ProgressBar progressBar;
@@ -123,12 +123,12 @@ public class SeriesItemsActivity extends BaseActivity {
     }
 
     private void setupSeriesItemsRv() {
-        seriesListRv.setLayoutManager(new LinearLayoutManager(this));
-        seriesListRv.setAdapter(seriesItemsAdapter);
+        seriesItemsRv.setLayoutManager(new LinearLayoutManager(this));
+        seriesItemsRv.setAdapter(seriesItemsAdapter);
     }
 
     private void findViews() {
-        seriesListRv = findViewById(R.id.series_items_rv);
+        seriesItemsRv = findViewById(R.id.series_items_rv);
         progressBar = findViewById(R.id.progress_bar);
     }
 
