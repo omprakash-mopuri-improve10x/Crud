@@ -37,7 +37,7 @@ public class SeriesListActivity extends BaseActivity {
         getSupportActionBar().setTitle("Series");
         findViews();
         setupSeriesItemsAdapter();
-        setupSeriesListRv();
+        setupSeriesItemsRv();
     }
 
     @Override
@@ -123,14 +123,13 @@ public class SeriesListActivity extends BaseActivity {
         });
     }
 
-    // Todo: Rename the method setupSeriesListRv() to setupSeriesItemsRv()
-    private void setupSeriesListRv() {
+    private void setupSeriesItemsRv() {
         seriesListRv.setLayoutManager(new LinearLayoutManager(this));
         seriesListRv.setAdapter(seriesListAdapter);
     }
 
     private void findViews() {
-        seriesListRv = findViewById(R.id.series_list_rv);
+        seriesListRv = findViewById(R.id.series_items_rv);
         progressBar = findViewById(R.id.progress_bar);
     }
 
