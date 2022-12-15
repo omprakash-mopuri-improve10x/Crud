@@ -14,8 +14,6 @@ import android.widget.ProgressBar;
 import com.example.crud.base.BaseActivity;
 import com.example.crud.Constants;
 import com.example.crud.R;
-import com.example.crud.internet.CrudApi;
-import com.example.crud.internet.CrudService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +25,7 @@ import retrofit2.Response;
 public class MessagesActivity extends BaseActivity {
 
     private RecyclerView messagesRv;
-    // Todo: Rename messageList to messages, for all classes
-    private ArrayList<Message> messageList = new ArrayList<>();
+    private ArrayList<Message> messages = new ArrayList<>();
     private MessagesAdapter messagesAdapter;
     private ProgressBar progressBar;
 
@@ -111,7 +108,7 @@ public class MessagesActivity extends BaseActivity {
 
     private void setupMessagesAdapter() {
         messagesAdapter = new MessagesAdapter();
-        messagesAdapter.setData(messageList);
+        messagesAdapter.setData(messages);
         messagesAdapter.setOnItemClickListener(new OnItemActionListener() {
             @Override
             public void onDelete(String id) {
