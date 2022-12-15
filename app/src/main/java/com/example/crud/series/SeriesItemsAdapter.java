@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 // Todo: Rename The class SeriesListAdapter to SeriesItemsAdapter
-public class SeriesListAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
+public class SeriesItemsAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
 
     private List<SeriesItem> seriesItems;
     private SeriesOnItemActionListener seriesOnItemActionListener;
