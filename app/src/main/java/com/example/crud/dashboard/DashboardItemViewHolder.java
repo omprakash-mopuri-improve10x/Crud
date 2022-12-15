@@ -14,13 +14,10 @@ public class DashboardItemViewHolder extends RecyclerView.ViewHolder {
 
     ImageView dashboardImg;
     TextView titleTxt;
-    // Todo: Remove "dashboardLayout"
-    LinearLayout dashboardLayout;
 
     public DashboardItemViewHolder(@NonNull View itemView) {
         super(itemView);
         dashboardImg = itemView.findViewById(R.id.dashboard_img);
         titleTxt = itemView.findViewById(R.id.title_txt);
-        dashboardLayout = itemView.findViewById(R.id.dashboard_layout);
     }
 }
