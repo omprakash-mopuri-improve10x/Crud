@@ -15,14 +15,14 @@ import retrofit2.Response;
 // Todo: Rename the class EditSeriesActivity to EditSeriesItemActivity
 public class EditSeriesActivity extends BaseAddEditSeriesActivity{
 
-    private Series series;
+    private SeriesItem seriesItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setTitle("Edit series");
         if (getIntent().hasExtra(Constants.KEY_SERIES)) {
-            series = (Series) getIntent().getSerializableExtra(Constants.KEY_SERIES);
+            seriesItem = (SeriesItem) getIntent().getSerializableExtra(Constants.KEY_SERIES);
             showData();
         }
     }
@@ -33,7 +33,7 @@ public class EditSeriesActivity extends BaseAddEditSeriesActivity{
             String seriesId = seriesIdTxt.getText().toString();
             String imageUrl = imageUrlTxt.getText().toString();
             String seriesName = seriesNameTxt.getText().toString();
-            updateSeries(series.id, seriesId, imageUrl, seriesName);
+            updateSeries(seriesItem.id, seriesId, imageUrl, seriesName);
             return true;
         } else {
             return super.onOptionsItemSelected(item);
@@ -41,7 +41,7 @@ public class EditSeriesActivity extends BaseAddEditSeriesActivity{
     }
 
     private void updateSeries(String id, String seriesId, String imageUrl, String title) {
-        Series series = new Series(seriesId, imageUrl, title);
+        SeriesItem series = new SeriesItem(seriesId, imageUrl, title);
         Call<Void> call = crudService.updateSeries(id, series);
         call.enqueue(new Callback<Void>() {
             @Override
@@ -58,8 +58,8 @@ public class EditSeriesActivity extends BaseAddEditSeriesActivity{
     }
 
     private void showData() {
-        seriesIdTxt.setText(series.seriesId);
-        seriesNameTxt.setText(series.title);
-        imageUrlTxt.setText(series.imageUrl);
+        seriesIdTxt.setText(seriesItem.seriesId);
+        seriesNameTxt.setText(seriesItem.title);
+        imageUrlTxt.setText(seriesItem.imageUrl);
     }
 }
