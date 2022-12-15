@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.crud.R;
 
+// Todo: Rename the SeriesViewHolder to SeriesItemViewHolder
 public class SeriesViewHolder extends RecyclerView.ViewHolder {
 
     ImageView seriesImg;

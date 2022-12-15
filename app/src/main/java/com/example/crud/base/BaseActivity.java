@@ -32,7 +32,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void log(String message) {
-        Log.i(this.getLocalClassName(), message);
+        Log.i(this.getClass().getSimpleName(), message);
     }
 
     private void setupCrudApiService() {

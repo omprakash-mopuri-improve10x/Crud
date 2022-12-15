@@ -24,6 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+// Todo: Rename the class SeriesListActivity to SeriesItemsActivity
 public class SeriesListActivity extends BaseActivity {
 
     private RecyclerView seriesListRv;
@@ -108,6 +109,7 @@ public class SeriesListActivity extends BaseActivity {
         startActivity(intent);
     }
 
+    // Todo: Rename the method setupSeriesListAdapter() to setupSeriesItemsAdapter()
     private void setupSeriesListAdapter() {
         seriesListAdapter = new SeriesListAdapter();
         seriesListAdapter.setData(seriesList);
@@ -124,6 +126,7 @@ public class SeriesListActivity extends BaseActivity {
         });
     }
 
+    // Todo: Rename the method setupSeriesListRv() to setupSeriesItemsRv()
     private void setupSeriesListRv() {
         seriesListRv.setLayoutManager(new LinearLayoutManager(this));
         seriesListRv.setAdapter(seriesListAdapter);

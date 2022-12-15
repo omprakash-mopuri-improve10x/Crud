@@ -21,6 +21,7 @@ public class DashboardItemsAdapter extends RecyclerView.Adapter<DashboardViewHol
 
     private ArrayList<DashboardItem> dashboardItems;
 
+    // Todo: Remove public in the setData() method, In all similar methods
     public void setData(ArrayList<DashboardItem> dashboardItems) {
         this.dashboardItems = dashboardItems;
         notifyDataSetChanged();
