@@ -33,13 +33,13 @@ public class DashboardItemsActivity extends BaseActivity {
     private void setupData() {
         hideProgressBar();
         dashboardItems = new ArrayList<>();
-        DashboardItem dashboard = new DashboardItem("https://i.blogs.es/5a3917/hero/450_1000.webp", "Messages");
+        DashboardItem dashboard = new DashboardItem("Messages", "https://i.blogs.es/5a3917/hero/450_1000.webp");
         dashboardItems.add(dashboard);
-        DashboardItem dashboard1 = new DashboardItem("https://associationsnow.com/wp-content/uploads/2018/08/GettyImages-625873026.jpg", "Templates");
+        DashboardItem dashboard1 = new DashboardItem("Templates", "https://associationsnow.com/wp-content/uploads/2018/08/GettyImages-625873026.jpg");
         dashboardItems.add(dashboard1);
-        DashboardItem dashboard2 = new DashboardItem("https://earnthis.net/wp-content/uploads/2014/02/hp-posters.jpg", "Series");
+        DashboardItem dashboard2 = new DashboardItem("Series", "https://earnthis.net/wp-content/uploads/2014/02/hp-posters.jpg");
         dashboardItems.add(dashboard2);
-        DashboardItem dashboard3 = new DashboardItem("https://static.wikia.nocookie.net/ultimatepopculture/images/b/b4/At-the-movies.jpg/revision/latest?cb=20191012032527", "Movies");
+        DashboardItem dashboard3 = new DashboardItem("Movies", "https://static.wikia.nocookie.net/ultimatepopculture/images/b/b4/At-the-movies.jpg/revision/latest?cb=20191012032527");
         dashboardItems.add(dashboard3);
     }
 

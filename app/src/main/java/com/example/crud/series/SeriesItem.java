@@ -10,16 +10,15 @@ public class SeriesItem implements Serializable {
     public String id;
     @SerializedName("id")
     public String seriesId;
-    public String imageUrl;
     public String title;
+    public String imageUrl;
 
     public SeriesItem() {
     }
 
-    // Todo: Mention the proper order in parameters Series(String seriesId, String imageUrl, String title), check the all constructors
-    public SeriesItem(String seriesId, String imageUrl, String title) {
+    public SeriesItem(String seriesId, String title, String imageUrl) {
         this.seriesId = seriesId;
-        this.imageUrl = imageUrl;
         this.title = title;
+        this.imageUrl = imageUrl;
     }
 }
