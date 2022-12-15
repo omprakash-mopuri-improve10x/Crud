@@ -12,7 +12,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 // Todo: Rename the class AddSeriesActivity to AddSeriesItemActivity
-public class AddSeriesActivity extends BaseAddEditSeriesActivity{
+public class AddSeriesActivity extends BaseAddEditSeriesItemsActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

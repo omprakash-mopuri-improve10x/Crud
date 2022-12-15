@@ -13,7 +13,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 // Todo: Rename the class EditSeriesActivity to EditSeriesItemActivity
-public class EditSeriesItemActivity extends BaseAddEditSeriesActivity{
+public class EditSeriesItemActivity extends BaseAddEditSeriesItemsActivity {
 
     private SeriesItem seriesItem;
 
