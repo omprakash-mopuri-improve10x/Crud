@@ -27,7 +27,7 @@ public class SeriesListActivity extends BaseActivity {
 
     private RecyclerView seriesListRv;
     private ArrayList<SeriesItem> seriesItems = new ArrayList<>();
-    private SeriesListAdapter seriesListAdapter;
+    private SeriesItemsAdapter seriesItemsAdapter;
     private ProgressBar progressBar;
 
     @Override
@@ -71,7 +71,7 @@ public class SeriesListActivity extends BaseActivity {
             public void onResponse(Call<List<SeriesItem>> call, Response<List<SeriesItem>> response) {
                 hideProgressBar();
                 List<SeriesItem> seriesItems = response.body();
-                seriesListAdapter.setData(seriesItems);
+                seriesItemsAdapter.setData(seriesItems);
             }
 
             @Override
@@ -108,9 +108,9 @@ public class SeriesListActivity extends BaseActivity {
     }
 
     private void setupSeriesItemsAdapter() {
-        seriesListAdapter = new SeriesListAdapter();
-        seriesListAdapter.setData(seriesItems);
-        seriesListAdapter.setSeriesOnItemActionListener(new SeriesOnItemActionListener() {
+        seriesItemsAdapter = new SeriesItemsAdapter();
+        seriesItemsAdapter.setData(seriesItems);
+        seriesItemsAdapter.setSeriesOnItemActionListener(new SeriesOnItemActionListener() {
             @Override
             public void onDelete(String id) {
                 deleteSeries(id);
@@ -125,7 +125,7 @@ public class SeriesListActivity extends BaseActivity {
 
     private void setupSeriesItemsRv() {
         seriesListRv.setLayoutManager(new LinearLayoutManager(this));
-        seriesListRv.setAdapter(seriesListAdapter);
+        seriesListRv.setAdapter(seriesItemsAdapter);
     }
 
     private void findViews() {
