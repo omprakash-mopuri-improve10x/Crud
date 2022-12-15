@@ -7,7 +7,7 @@ import android.widget.EditText;
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
 
-public class BaseAddEditSeriesItemsActivity extends BaseActivity {
+public class BaseAddEditSeriesItemActivity extends BaseActivity {
 
     protected EditText seriesIdTxt;
     protected EditText seriesNameTxt;
