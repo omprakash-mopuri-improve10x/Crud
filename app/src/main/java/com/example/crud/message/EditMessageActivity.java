@@ -19,9 +19,8 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("Edit Message");
         if (getIntent().hasExtra(Constants.KEY_MESSAGE)) {
-            // Todo: Remove getSupportActionBar().setTitle("Edit Message"); and mention this before if condition, for all similar classes
-            getSupportActionBar().setTitle("Edit Message");
             message = (Message) getIntent().getSerializableExtra(Constants.KEY_MESSAGE);
             showData();
         }
