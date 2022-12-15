@@ -18,11 +18,11 @@ public class SeriesListAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
     private List<Series> seriesList;
     private SeriesOnItemActionListener seriesOnItemActionListener;
 
-    public void setSeriesOnItemActionListener(SeriesOnItemActionListener seriesOnItemActionListener) {
+    void setSeriesOnItemActionListener(SeriesOnItemActionListener seriesOnItemActionListener) {
         this.seriesOnItemActionListener = seriesOnItemActionListener;
     }
 
-    public void setData(List<Series> seriesList) {
+    void setData(List<Series> seriesList) {
         this.seriesList = seriesList;
         notifyDataSetChanged();
     }
