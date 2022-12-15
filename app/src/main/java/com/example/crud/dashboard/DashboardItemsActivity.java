@@ -10,8 +10,7 @@ import com.example.crud.base.BaseActivity;
 
 import java.util.ArrayList;
 
-public class DashboardActivity extends BaseActivity {
-    // Todo: Rename the class DashboardActivity to DashboardItemsActivity
+public class DashboardItemsActivity extends BaseActivity {
     // Todo: Add the progress bar in DashboardItemsActivity
 
     private RecyclerView dashboardItemsRv;
