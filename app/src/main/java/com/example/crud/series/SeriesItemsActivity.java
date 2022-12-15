@@ -54,7 +54,7 @@ public class SeriesItemsActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.add) {
-            Intent intent = new Intent(this, AddSeriesActivity.class);
+            Intent intent = new Intent(this, AddSeriesItemActivity.class);
             startActivity(intent);
             return true;
         } else {
