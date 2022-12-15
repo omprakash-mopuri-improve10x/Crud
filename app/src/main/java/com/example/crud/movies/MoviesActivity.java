@@ -81,17 +81,19 @@ public class MoviesActivity extends BaseActivity {
     }
 
     private void deleteMovie(String id) {
-        // Todo: Mention show progress and hideProgress in deleteMovie, for all delete methods
+        showProgressBar();
         Call<Void> call = crudService.deleteMovie(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                hideProgressBar();
                 showToast("Successfully deleted a movie");
                 fetchMovies();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                hideProgressBar();
                 showToast("Failed to delete a movie");
             }
         });
