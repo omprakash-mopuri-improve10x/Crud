@@ -17,7 +17,7 @@ public class Series implements Serializable {
     public Series() {
     }
 
-    // Todo: Mention the proper order Series(String seriesId, String imageUrl, String title), check the all constructors
+    // Todo: Mention the proper order in parameters Series(String seriesId, String imageUrl, String title), check the all constructors
     public Series(String seriesId, String imageUrl, String title) {
         this.seriesId = seriesId;
         this.imageUrl = imageUrl;
