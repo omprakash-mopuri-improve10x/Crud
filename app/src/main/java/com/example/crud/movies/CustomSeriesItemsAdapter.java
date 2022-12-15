@@ -15,9 +15,8 @@ import com.example.crud.series.Series;
 
 import java.util.List;
 
-// Todo: Rename the class CustomSeriesListAdapter to CustomSeriesItemsAdapter
-public class CustomSeriesListAdapter extends ArrayAdapter<Series> {
-    public CustomSeriesListAdapter(@NonNull Context context, int resource, @NonNull List<Series> objects) {
+public class CustomSeriesItemsAdapter extends ArrayAdapter<Series> {
+    public CustomSeriesItemsAdapter(@NonNull Context context, int resource, @NonNull List<Series> objects) {
         super(context, resource, objects);
     }
 

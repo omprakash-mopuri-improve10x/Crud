@@ -19,7 +19,7 @@ import retrofit2.Response;
 public class BaseAddEditMovieActivity extends BaseActivity {
 
     protected Spinner seriesSp;
-    protected CustomSeriesListAdapter customSeriesListAdapter;
+    protected CustomSeriesItemsAdapter customSeriesItemsAdapter;
     private ArrayList<Series> seriesList = new ArrayList<>();
     protected EditText movieIdTxt;
     protected EditText movieNameTxt;
@@ -48,7 +48,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
                 List<Series> seriesList1 = response.body();
-                customSeriesListAdapter.addAll(seriesList1);
+                customSeriesItemsAdapter.addAll(seriesList1);
                 if (movie != null) {
                     showData();
                 }
@@ -62,8 +62,8 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     }
 
     private void setupSeriesItemsSp() {
-        customSeriesListAdapter = new CustomSeriesListAdapter(this, android.R.layout.simple_list_item_1, seriesList);
-        seriesSp.setAdapter(customSeriesListAdapter);
+        customSeriesItemsAdapter = new CustomSeriesItemsAdapter(this, android.R.layout.simple_list_item_1, seriesList);
+        seriesSp.setAdapter(customSeriesItemsAdapter);
     }
 
     protected void showData() {
@@ -71,8 +71,8 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         movieNameTxt.setText(movie.title);
         imageUrlTxt.setText(movie.imageUrl);
         descriptionTxt.setText(movie.description);
-        for (int i = 0; i < customSeriesListAdapter.getCount(); i++) {
-            Series series = customSeriesListAdapter.getItem(i);
+        for (int i = 0; i < customSeriesItemsAdapter.getCount(); i++) {
+            Series series = customSeriesItemsAdapter.getItem(i);
             if (movie.seriesId.equals(series.seriesId)) {
                 seriesSp.setSelection(i);
             }
