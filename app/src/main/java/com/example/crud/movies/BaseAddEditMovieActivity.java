@@ -1,18 +1,12 @@
 package com.example.crud.movies;
 
-import androidx.annotation.NonNull;
-
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
-import com.example.crud.internet.CrudApi;
-import com.example.crud.internet.CrudService;
 import com.example.crud.series.Series;
 
 import java.util.ArrayList;
@@ -38,7 +32,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_movie);
         findViews();
-        fetchSeriesList();
+        fetchSeriesItems();
         setupSeriesListSp();
     }
 
@@ -48,8 +42,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         return true;
     }
 
-    // Todo: Rename the method fetchSeriesList() to fetchSeriesItems()
-    private void fetchSeriesList() {
+    private void fetchSeriesItems() {
         Call<List<Series>> call = crudService.fetchSeriesList();
         call.enqueue(new Callback<List<Series>>() {
             @Override
