@@ -22,8 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-// Todo: Rename the class SeriesListActivity to SeriesItemsActivity
-public class SeriesListActivity extends BaseActivity {
+public class SeriesItemsActivity extends BaseActivity {
 
     private RecyclerView seriesListRv;
     private ArrayList<SeriesItem> seriesItems = new ArrayList<>();
