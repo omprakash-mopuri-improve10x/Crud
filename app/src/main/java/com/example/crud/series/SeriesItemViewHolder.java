@@ -10,14 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.crud.R;
 
-// Todo: Rename the SeriesViewHolder to SeriesItemViewHolder
-public class SeriesViewHolder extends RecyclerView.ViewHolder {
+public class SeriesItemViewHolder extends RecyclerView.ViewHolder {
 
     ImageView seriesImg;
     TextView titleTxt;
     ImageButton deleteIb;
 
-    public SeriesViewHolder(@NonNull View itemView) {
+    public SeriesItemViewHolder(@NonNull View itemView) {
         super(itemView);
         seriesImg = itemView.findViewById(R.id.series_img);
         titleTxt = itemView.findViewById(R.id.title_txt);
