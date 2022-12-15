@@ -44,7 +44,7 @@ public class AddMessageActivity extends BaseAddEditMessageActivity{
 
             @Override
             public void onFailure(Call<Message> call, Throwable t) {
-                showToast("Failed add message");
+                showToast("Failed to add message");
             }
         });
     }

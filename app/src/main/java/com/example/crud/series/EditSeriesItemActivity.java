@@ -19,7 +19,7 @@ public class EditSeriesItemActivity extends BaseAddEditSeriesItemActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle("Edit series");
+        getSupportActionBar().setTitle("Edit Series");
         if (getIntent().hasExtra(Constants.KEY_SERIES)) {
             seriesItem = (SeriesItem) getIntent().getSerializableExtra(Constants.KEY_SERIES);
             showData();
@@ -51,7 +51,7 @@ public class EditSeriesItemActivity extends BaseAddEditSeriesItemActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                showToast("Failed to update series");
+                showToast("Failed to update a series");
             }
         });
     }

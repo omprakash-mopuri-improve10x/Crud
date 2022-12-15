@@ -42,7 +42,7 @@ public class SeriesItemsActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        fetchSeriesList();
+        fetchSeriesItems();
     }
 
     @Override
@@ -62,7 +62,7 @@ public class SeriesItemsActivity extends BaseActivity {
         }
     }
 
-    private void fetchSeriesList() {
+    private void fetchSeriesItems() {
         showProgressBar();
         Call<List<SeriesItem>> call = crudService.fetchSeriesList();
         call.enqueue(new Callback<List<SeriesItem>>() {
@@ -81,7 +81,7 @@ public class SeriesItemsActivity extends BaseActivity {
         });
     }
 
-    private void deleteSeries(String id) {
+    private void deleteSeriesItem(String id) {
         showProgressBar();
         Call<Void> call = crudService.deleteSeries(id);
         call.enqueue(new Callback<Void>() {
@@ -89,7 +89,7 @@ public class SeriesItemsActivity extends BaseActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 hideProgressBar();
                 showToast("Successfully deleted");
-                fetchSeriesList();
+                fetchSeriesItems();
             }
 
             @Override
@@ -100,9 +100,9 @@ public class SeriesItemsActivity extends BaseActivity {
         });
     }
 
-    private void editSeries(SeriesItem series) {
+    private void editSeriesItem(SeriesItem seriesItem) {
         Intent intent = new Intent(this, EditSeriesItemActivity.class);
-        intent.putExtra(Constants.KEY_SERIES, series);
+        intent.putExtra(Constants.KEY_SERIES, seriesItem);
         startActivity(intent);
     }
 
@@ -112,12 +112,12 @@ public class SeriesItemsActivity extends BaseActivity {
         seriesItemsAdapter.setSeriesOnItemActionListener(new SeriesOnItemActionListener() {
             @Override
             public void onDelete(String id) {
-                deleteSeries(id);
+                deleteSeriesItem(id);
             }
 
             @Override
             public void onEdit(SeriesItem seriesItem) {
-                editSeries(seriesItem);
+                editSeriesItem(seriesItem);
             }
         });
     }

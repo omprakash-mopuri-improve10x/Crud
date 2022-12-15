@@ -19,6 +19,7 @@ import retrofit2.Response;
 public class BaseAddEditMovieActivity extends BaseActivity {
 
     protected Spinner seriesSp;
+    // Todo: remove protected give private, check all adapter modifiers
     protected CustomSeriesItemsAdapter customSeriesItemsAdapter;
     private ArrayList<SeriesItem> seriesItems = new ArrayList<>();
     protected EditText movieIdTxt;
