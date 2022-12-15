@@ -16,12 +16,12 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessageViewHolder> {
     private List<Message> messages;
     private OnItemActionListener onItemActionListener;
 
-    public void setData(List<Message> messages) {
+    void setData(List<Message> messages) {
         this.messages = messages;
         notifyDataSetChanged();
     }
 
-    public void setOnItemClickListener(OnItemActionListener onItemActionListener) {
+    void setOnItemClickListener(OnItemActionListener onItemActionListener) {
         this.onItemActionListener = onItemActionListener;
     }
 
