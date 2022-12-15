@@ -15,14 +15,14 @@ import java.util.List;
 // Todo: Rename The class SeriesListAdapter to SeriesItemsAdapter
 public class SeriesListAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
 
-    private List<Series> seriesItems;
+    private List<SeriesItem> seriesItems;
     private SeriesOnItemActionListener seriesOnItemActionListener;
 
     void setSeriesOnItemActionListener(SeriesOnItemActionListener seriesOnItemActionListener) {
         this.seriesOnItemActionListener = seriesOnItemActionListener;
     }
 
-    void setData(List<Series> seriesItems) {
+    void setData(List<SeriesItem> seriesItems) {
         this.seriesItems = seriesItems;
         notifyDataSetChanged();
     }
@@ -37,7 +37,7 @@ public class SeriesListAdapter extends RecyclerView.Adapter<SeriesViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull SeriesViewHolder holder, int position) {
-        Series series = seriesItems.get(position);
+        SeriesItem series = seriesItems.get(position);
         holder.titleTxt.setText(series.title);
         if (series.imageUrl != null && series.imageUrl.isEmpty() == false) {
             Picasso.get().load(series.imageUrl).into(holder.seriesImg);

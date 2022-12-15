@@ -26,7 +26,7 @@ import retrofit2.Response;
 public class SeriesListActivity extends BaseActivity {
 
     private RecyclerView seriesListRv;
-    private ArrayList<Series> seriesItems = new ArrayList<>();
+    private ArrayList<SeriesItem> seriesItems = new ArrayList<>();
     private SeriesListAdapter seriesListAdapter;
     private ProgressBar progressBar;
 
@@ -65,17 +65,17 @@ public class SeriesListActivity extends BaseActivity {
 
     private void fetchSeriesList() {
         showProgressBar();
-        Call<List<Series>> call = crudService.fetchSeriesList();
-        call.enqueue(new Callback<List<Series>>() {
+        Call<List<SeriesItem>> call = crudService.fetchSeriesList();
+        call.enqueue(new Callback<List<SeriesItem>>() {
             @Override
-            public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
+            public void onResponse(Call<List<SeriesItem>> call, Response<List<SeriesItem>> response) {
                 hideProgressBar();
-                List<Series> seriesItems = response.body();
+                List<SeriesItem> seriesItems = response.body();
                 seriesListAdapter.setData(seriesItems);
             }
 
             @Override
-            public void onFailure(Call<List<Series>> call, Throwable t) {
+            public void onFailure(Call<List<SeriesItem>> call, Throwable t) {
                 hideProgressBar();
                 showToast("Failed to load data");
             }
@@ -101,7 +101,7 @@ public class SeriesListActivity extends BaseActivity {
         });
     }
 
-    private void editSeries(Series series) {
+    private void editSeries(SeriesItem series) {
         Intent intent = new Intent(this, EditSeriesActivity.class);
         intent.putExtra(Constants.KEY_SERIES, series);
         startActivity(intent);
@@ -118,8 +118,8 @@ public class SeriesListActivity extends BaseActivity {
             }
 
             @Override
-            public void onEdit(Series series) {
-                editSeries(series);
+            public void onEdit(SeriesItem seriesItem) {
+                editSeries(seriesItem);
             }
         });
     }

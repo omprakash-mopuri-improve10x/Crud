@@ -7,7 +7,7 @@ import android.widget.Spinner;
 
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
-import com.example.crud.series.Series;
+import com.example.crud.series.SeriesItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
 
     protected Spinner seriesSp;
     protected CustomSeriesItemsAdapter customSeriesItemsAdapter;
-    private ArrayList<Series> seriesList = new ArrayList<>();
+    private ArrayList<SeriesItem> seriesItems = new ArrayList<>();
     protected EditText movieIdTxt;
     protected EditText movieNameTxt;
     protected EditText imageUrlTxt;
@@ -43,11 +43,11 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     }
 
     private void fetchSeriesItems() {
-        Call<List<Series>> call = crudService.fetchSeriesList();
-        call.enqueue(new Callback<List<Series>>() {
+        Call<List<SeriesItem>> call = crudService.fetchSeriesList();
+        call.enqueue(new Callback<List<SeriesItem>>() {
             @Override
-            public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
-                List<Series> seriesList1 = response.body();
+            public void onResponse(Call<List<SeriesItem>> call, Response<List<SeriesItem>> response) {
+                List<SeriesItem> seriesList1 = response.body();
                 customSeriesItemsAdapter.addAll(seriesList1);
                 if (movie != null) {
                     showData();
@@ -55,14 +55,14 @@ public class BaseAddEditMovieActivity extends BaseActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Series>> call, Throwable t) {
+            public void onFailure(Call<List<SeriesItem>> call, Throwable t) {
                 showToast("Failed to load data");
             }
         });
     }
 
     private void setupSeriesItemsSp() {
-        customSeriesItemsAdapter = new CustomSeriesItemsAdapter(this, android.R.layout.simple_list_item_1, seriesList);
+        customSeriesItemsAdapter = new CustomSeriesItemsAdapter(this, android.R.layout.simple_list_item_1, seriesItems);
         seriesSp.setAdapter(customSeriesItemsAdapter);
     }
 
@@ -72,7 +72,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         imageUrlTxt.setText(movie.imageUrl);
         descriptionTxt.setText(movie.description);
         for (int i = 0; i < customSeriesItemsAdapter.getCount(); i++) {
-            Series series = customSeriesItemsAdapter.getItem(i);
+            SeriesItem series = customSeriesItemsAdapter.getItem(i);
             if (movie.seriesId.equals(series.seriesId)) {
                 seriesSp.setSelection(i);
             }
