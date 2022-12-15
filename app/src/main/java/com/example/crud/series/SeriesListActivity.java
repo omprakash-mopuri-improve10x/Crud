@@ -14,8 +14,6 @@ import android.widget.ProgressBar;
 import com.example.crud.base.BaseActivity;
 import com.example.crud.Constants;
 import com.example.crud.R;
-import com.example.crud.internet.CrudApi;
-import com.example.crud.internet.CrudService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +26,7 @@ import retrofit2.Response;
 public class SeriesListActivity extends BaseActivity {
 
     private RecyclerView seriesListRv;
-    private ArrayList<Series> seriesList = new ArrayList<>();
+    private ArrayList<Series> seriesItems = new ArrayList<>();
     private SeriesListAdapter seriesListAdapter;
     private ProgressBar progressBar;
 
@@ -72,8 +70,8 @@ public class SeriesListActivity extends BaseActivity {
             @Override
             public void onResponse(Call<List<Series>> call, Response<List<Series>> response) {
                 hideProgressBar();
-                List<Series> seriesList1 = response.body();
-                seriesListAdapter.setData(seriesList1);
+                List<Series> seriesItems = response.body();
+                seriesListAdapter.setData(seriesItems);
             }
 
             @Override
@@ -112,7 +110,7 @@ public class SeriesListActivity extends BaseActivity {
     // Todo: Rename the method setupSeriesListAdapter() to setupSeriesItemsAdapter()
     private void setupSeriesListAdapter() {
         seriesListAdapter = new SeriesListAdapter();
-        seriesListAdapter.setData(seriesList);
+        seriesListAdapter.setData(seriesItems);
         seriesListAdapter.setSeriesOnItemActionListener(new SeriesOnItemActionListener() {
             @Override
             public void onDelete(String id) {

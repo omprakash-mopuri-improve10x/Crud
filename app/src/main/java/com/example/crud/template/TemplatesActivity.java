@@ -14,8 +14,6 @@ import android.widget.ProgressBar;
 import com.example.crud.base.BaseActivity;
 import com.example.crud.Constants;
 import com.example.crud.R;
-import com.example.crud.internet.CrudApi;
-import com.example.crud.internet.CrudService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +25,7 @@ import retrofit2.Response;
 public class TemplatesActivity extends BaseActivity {
 
     private RecyclerView templatesRv;
-    private ArrayList<Template> templateList = new ArrayList<>();
+    private ArrayList<Template> templates = new ArrayList<>();
     private TemplatesAdapter templatesAdapter;
     private ProgressBar progressBar;
 
@@ -110,7 +108,7 @@ public class TemplatesActivity extends BaseActivity {
 
     private void setupTemplatesAdapter() {
         templatesAdapter = new TemplatesAdapter();
-        templatesAdapter.setData(templateList);
+        templatesAdapter.setData(templates);
         templatesAdapter.setTemplateOnItemActionListener(new TemplateOnItemActionListener() {
             @Override
             public void onDelete(String id) {

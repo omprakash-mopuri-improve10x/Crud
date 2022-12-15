@@ -14,8 +14,6 @@ import android.widget.ProgressBar;
 import com.example.crud.base.BaseActivity;
 import com.example.crud.Constants;
 import com.example.crud.R;
-import com.example.crud.internet.CrudApi;
-import com.example.crud.internet.CrudService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +25,7 @@ import retrofit2.Response;
 public class MoviesActivity extends BaseActivity {
 
     private RecyclerView moviesRv;
-    private ArrayList<Movie> movieList = new ArrayList<>();
+    private ArrayList<Movie> movies = new ArrayList<>();
     private MoviesAdapter moviesAdapter;
     private ProgressBar progressBar;
 
@@ -107,7 +105,7 @@ public class MoviesActivity extends BaseActivity {
 
     private void setupMoviesAdapter() {
         moviesAdapter = new MoviesAdapter();
-        moviesAdapter.setData(movieList);
+        moviesAdapter.setData(movies);
         moviesAdapter.setMovieOnItemActionListener(new MovieOnItemActionListener() {
             @Override
             public void onDelete(String id) {
