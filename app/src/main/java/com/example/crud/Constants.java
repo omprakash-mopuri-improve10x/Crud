@@ -9,7 +9,6 @@ public class Constants {
     public static final String BASE_URL = "https://crudcrud.com/api/479dd07f8c1d482e9219f7dcb48e25f4/";
     public static final String MESSAGES_END_POINT = "omMessageHistory";
     public static final String TEMPLATES_END_POINT = "omTemplates";
-    // Todo: Change the SERIES_END_POINT TO SERIES_ITEMS_END_POINT
-    public static final String SERIES_END_POINT = "omSeries";
+    public static final String SERIES_ITEMS_END_POINT = "omSeries";
     public static final String MOVIES_END_POINT = "omMovies";
 }
