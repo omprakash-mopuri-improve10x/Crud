@@ -42,18 +42,17 @@ public interface CrudService {
     @PUT(Constants.TEMPLATES_END_POINT + "/{id}")
     Call<Void> updateTemplate(@Path("id") String id, @Body Template template);
 
-    // Todo: Rename series methods
     @GET(Constants.SERIES_ITEMS_END_POINT)
-    Call<List<SeriesItem>> fetchSeriesList();
+    Call<List<SeriesItem>> fetchSeriesItems();
 
     @POST(Constants.SERIES_ITEMS_END_POINT)
-    Call<SeriesItem> createSeries(@Body SeriesItem seriesItem);
+    Call<SeriesItem> createSeriesItem(@Body SeriesItem seriesItem);
 
     @DELETE(Constants.SERIES_ITEMS_END_POINT + "/{id}")
-    Call<Void> deleteSeries(@Path("id") String id);
+    Call<Void> deleteSeriesItem(@Path("id") String id);
 
     @PUT(Constants.SERIES_ITEMS_END_POINT + "/{id}")
-    Call<Void> updateSeries(@Path("id") String id, @Body SeriesItem seriesItem);
+    Call<Void> updateSeriesItem(@Path("id") String id, @Body SeriesItem seriesItem);
 
     @GET(Constants.MOVIES_END_POINT)
     Call<List<Movie>> fetchMovies();
