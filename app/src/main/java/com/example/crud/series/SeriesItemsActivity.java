@@ -64,7 +64,7 @@ public class SeriesItemsActivity extends BaseActivity {
 
     private void fetchSeriesItems() {
         showProgressBar();
-        Call<List<SeriesItem>> call = crudService.fetchSeriesList();
+        Call<List<SeriesItem>> call = crudService.fetchSeriesItems();
         call.enqueue(new Callback<List<SeriesItem>>() {
             @Override
             public void onResponse(Call<List<SeriesItem>> call, Response<List<SeriesItem>> response) {
@@ -83,7 +83,7 @@ public class SeriesItemsActivity extends BaseActivity {
 
     private void deleteSeriesItem(String id) {
         showProgressBar();
-        Call<Void> call = crudService.deleteSeries(id);
+        Call<Void> call = crudService.deleteSeriesItem(id);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
