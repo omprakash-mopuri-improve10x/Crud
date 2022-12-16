@@ -50,7 +50,7 @@ public class EditTemplateActivity extends BaseAddEditTemplateActivity{
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                showToast("Failed to update");
+                showToast("Failed to update a template");
             }
         });
     }

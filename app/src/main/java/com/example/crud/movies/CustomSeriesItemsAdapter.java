@@ -24,18 +24,18 @@ public class CustomSeriesItemsAdapter extends ArrayAdapter<SeriesItem> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.series_drop_down, parent, false);
-        SeriesItem series = getItem(position);
+        SeriesItem seriesItem = getItem(position);
         TextView titleTxt = view.findViewById(R.id.title_txt);
-        titleTxt.setText(series.seriesId + " - " + series.title);
+        titleTxt.setText(seriesItem.seriesId + " - " + seriesItem.title);
         return view;
     }
 
     @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.series_drop_down, parent, false);
-        SeriesItem series = getItem(position);
+        SeriesItem seriesItem = getItem(position);
         TextView titleTxt = view.findViewById(R.id.title_txt);
-        titleTxt.setText(series.seriesId + " - " + series.title);
+        titleTxt.setText(seriesItem.seriesId + " - " + seriesItem.title);
         return view;
     }
 }
