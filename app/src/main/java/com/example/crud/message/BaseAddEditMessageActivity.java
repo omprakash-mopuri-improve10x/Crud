@@ -1,21 +1,11 @@
 package com.example.crud.message;
 
-import androidx.annotation.NonNull;
-
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.EditText;
 
-import com.example.crud.Constants;
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
-import com.example.crud.internet.CrudApi;
-import com.example.crud.internet.CrudService;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class BaseAddEditMessageActivity extends BaseActivity {
 
@@ -26,13 +16,13 @@ public class BaseAddEditMessageActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_edit_message);
+        setContentView(R.layout.activity_base_add_edit_message);
         findViews();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.add_edit_message_menu, menu);
+        getMenuInflater().inflate(R.menu.base_add_edit_message_menu, menu);
         return true;
     }
 
