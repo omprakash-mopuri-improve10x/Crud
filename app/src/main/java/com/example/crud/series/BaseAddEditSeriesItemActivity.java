@@ -16,13 +16,13 @@ public class BaseAddEditSeriesItemActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_edit_series);
+        setContentView(R.layout.activity_base_add_edit_series_item);
         findViews();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.add_edit_series_menu, menu);
+        getMenuInflater().inflate(R.menu.base_add_edit_series_item_menu, menu);
         return true;
     }
 
