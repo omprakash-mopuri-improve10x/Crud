@@ -31,15 +31,14 @@ public class DashboardItemsActivity extends BaseActivity {
 
     private void setupData() {
         dashboardItems = new ArrayList<>();
-        // Todo: Rename the all Dashboard objects
-        DashboardItem dashboard = new DashboardItem("Messages", "https://i.blogs.es/5a3917/hero/450_1000.webp");
-        dashboardItems.add(dashboard);
-        DashboardItem dashboard1 = new DashboardItem("Templates", "https://associationsnow.com/wp-content/uploads/2018/08/GettyImages-625873026.jpg");
-        dashboardItems.add(dashboard1);
-        DashboardItem dashboard2 = new DashboardItem("Series", "https://earnthis.net/wp-content/uploads/2014/02/hp-posters.jpg");
-        dashboardItems.add(dashboard2);
-        DashboardItem dashboard3 = new DashboardItem("Movies", "https://static.wikia.nocookie.net/ultimatepopculture/images/b/b4/At-the-movies.jpg/revision/latest?cb=20191012032527");
-        dashboardItems.add(dashboard3);
+        DashboardItem messages = new DashboardItem("Messages", "https://i.blogs.es/5a3917/hero/450_1000.webp");
+        dashboardItems.add(messages);
+        DashboardItem templates = new DashboardItem("Templates", "https://associationsnow.com/wp-content/uploads/2018/08/GettyImages-625873026.jpg");
+        dashboardItems.add(templates);
+        DashboardItem series = new DashboardItem("Series", "https://earnthis.net/wp-content/uploads/2014/02/hp-posters.jpg");
+        dashboardItems.add(series);
+        DashboardItem movies = new DashboardItem("Movies", "https://static.wikia.nocookie.net/ultimatepopculture/images/b/b4/At-the-movies.jpg/revision/latest?cb=20191012032527");
+        dashboardItems.add(movies);
     }
 
     private void setupDashboardItemsAdapter() {
