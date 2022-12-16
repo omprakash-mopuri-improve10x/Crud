@@ -19,8 +19,7 @@ import retrofit2.Response;
 public class BaseAddEditMovieActivity extends BaseActivity {
 
     protected Spinner seriesSp;
-    // Todo: remove protected give private, check all adapter modifiers
-    protected CustomSeriesItemsAdapter customSeriesItemsAdapter;
+    private CustomSeriesItemsAdapter customSeriesItemsAdapter;
     private ArrayList<SeriesItem> seriesItems = new ArrayList<>();
     protected EditText movieIdTxt;
     protected EditText movieNameTxt;
@@ -33,6 +32,7 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit_movie);
         findViews();
+        setupCustomSeriesItemsAdapter();
         fetchSeriesItems();
         setupSeriesItemsSp();
     }
@@ -62,8 +62,11 @@ public class BaseAddEditMovieActivity extends BaseActivity {
         });
     }
 
-    private void setupSeriesItemsSp() {
+    private void setupCustomSeriesItemsAdapter() {
         customSeriesItemsAdapter = new CustomSeriesItemsAdapter(this, android.R.layout.simple_list_item_1, seriesItems);
+    }
+
+    private void setupSeriesItemsSp() {
         seriesSp.setAdapter(customSeriesItemsAdapter);
     }
 

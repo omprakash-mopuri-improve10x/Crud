@@ -17,6 +17,7 @@ public class DashboardItemsActivity extends BaseActivity {
     private RecyclerView dashboardItemsRv;
     private ArrayList<DashboardItem> dashboardItems;
     private DashboardItemsAdapter dashboardItemsAdapter;
+    // Todo: Remove progressBar in DashboardItemsActivity
     private ProgressBar progressBar;
 
     @Override
@@ -33,6 +34,7 @@ public class DashboardItemsActivity extends BaseActivity {
     private void setupData() {
         hideProgressBar();
         dashboardItems = new ArrayList<>();
+        // Todo: Rename the all Dashboard objects
         DashboardItem dashboard = new DashboardItem("Messages", "https://i.blogs.es/5a3917/hero/450_1000.webp");
         dashboardItems.add(dashboard);
         DashboardItem dashboard1 = new DashboardItem("Templates", "https://associationsnow.com/wp-content/uploads/2018/08/GettyImages-625873026.jpg");

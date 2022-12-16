@@ -42,6 +42,7 @@ public interface CrudService {
     @PUT(Constants.TEMPLATES_END_POINT + "/{id}")
     Call<Void> updateTemplate(@Path("id") String id, @Body Template template);
 
+    // Todo: Rename series methods
     @GET(Constants.SERIES_ITEMS_END_POINT)
     Call<List<SeriesItem>> fetchSeriesList();
 
