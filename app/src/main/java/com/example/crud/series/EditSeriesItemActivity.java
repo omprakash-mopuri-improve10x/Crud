@@ -20,18 +20,16 @@ public class EditSeriesItemActivity extends BaseAddEditSeriesItemActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setTitle("Edit Series");
-        if (getIntent().hasExtra(Constants.KEY_SERIES_ITEM)) {
-            seriesItem = (SeriesItem) getIntent().getSerializableExtra(Constants.KEY_SERIES_ITEM);
-            showData();
-        }
+        seriesItem = (SeriesItem) getIntent().getSerializableExtra(Constants.KEY_SERIES_ITEM);
+        showData();
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.done) {
-            String seriesId = seriesIdTxt.getText().toString();
-            String imageUrl = imageUrlTxt.getText().toString();
-            String seriesName = seriesNameTxt.getText().toString();
+            String seriesId = binding.seriesIdTxt.getText().toString();
+            String imageUrl = binding.imageUrlTxt.getText().toString();
+            String seriesName = binding.seriesNameTxt.getText().toString();
             updateSeries(seriesItem.id, seriesId, seriesName, imageUrl);
             return true;
         } else {
@@ -57,8 +55,8 @@ public class EditSeriesItemActivity extends BaseAddEditSeriesItemActivity {
     }
 
     private void showData() {
-        seriesIdTxt.setText(seriesItem.seriesId);
-        seriesNameTxt.setText(seriesItem.title);
-        imageUrlTxt.setText(seriesItem.imageUrl);
+        binding.seriesIdTxt.setText(seriesItem.seriesId);
+        binding.seriesNameTxt.setText(seriesItem.title);
+        binding.imageUrlTxt.setText(seriesItem.imageUrl);
     }
 }
