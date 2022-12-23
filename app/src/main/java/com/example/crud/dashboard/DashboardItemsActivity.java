@@ -7,21 +7,22 @@ import android.os.Bundle;
 
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
+import com.example.crud.databinding.ActivityDashboardItemsBinding;
 
 import java.util.ArrayList;
 
 public class DashboardItemsActivity extends BaseActivity {
 
-    private RecyclerView dashboardItemsRv;
+    private ActivityDashboardItemsBinding binding;
     private ArrayList<DashboardItem> dashboardItems;
     private DashboardItemsAdapter dashboardItemsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard_items);
+        binding = ActivityDashboardItemsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         getSupportActionBar().setTitle("Dashboard");
-        findViews();
         setupData();
         setupDashboardItemsAdapter();
         setupDashboardItemsRv();
@@ -45,11 +46,7 @@ public class DashboardItemsActivity extends BaseActivity {
     }
 
     private void setupDashboardItemsRv() {
-        dashboardItemsRv.setLayoutManager(new LinearLayoutManager(this));
-        dashboardItemsRv.setAdapter(dashboardItemsAdapter);
-    }
-
-    private void findViews() {
-        dashboardItemsRv = findViewById(R.id.dashboard_items_rv);
+        binding.dashboardItemsRv.setLayoutManager(new LinearLayoutManager(this));
+        binding.dashboardItemsRv.setAdapter(dashboardItemsAdapter);
     }
 }
