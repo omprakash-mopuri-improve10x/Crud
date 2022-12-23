@@ -29,9 +29,9 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.done) {
-            String name = nameTxt.getText().toString();
-            String phoneNumber = phoneNumberTxt.getText().toString();
-            String message = messageTxt.getText().toString();
+            String name = binding.nameTxt.getText().toString();
+            String phoneNumber = binding.phoneNumberTxt.getText().toString();
+            String message = binding.messageTxt.getText().toString();
             updateMessage(this.message.id, name, phoneNumber, message);
             return true;
         } else {
@@ -57,8 +57,8 @@ public class EditMessageActivity extends BaseAddEditMessageActivity{
     }
 
     private void showData() {
-        nameTxt.setText(message.name);
-        phoneNumberTxt.setText(message.phoneNumber);
-        messageTxt.setText(message.messageText);
+        binding.nameTxt.setText(message.name);
+        binding.phoneNumberTxt.setText(message.phoneNumber);
+        binding.messageTxt.setText(message.messageText);
     }
 }
