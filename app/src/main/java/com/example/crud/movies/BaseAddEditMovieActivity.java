@@ -7,6 +7,7 @@ import android.widget.Spinner;
 
 import com.example.crud.R;
 import com.example.crud.base.BaseActivity;
+import com.example.crud.databinding.ActivityBaseAddEditMovieBinding;
 import com.example.crud.series.SeriesItem;
 
 import java.util.ArrayList;
@@ -18,20 +19,16 @@ import retrofit2.Response;
 
 public class BaseAddEditMovieActivity extends BaseActivity {
 
-    protected Spinner seriesSp;
+    protected ActivityBaseAddEditMovieBinding binding;
     private CustomSeriesItemsAdapter customSeriesItemsAdapter;
     private ArrayList<SeriesItem> seriesItems = new ArrayList<>();
-    protected EditText movieIdTxt;
-    protected EditText movieNameTxt;
-    protected EditText imageUrlTxt;
-    protected EditText descriptionTxt;
     protected Movie movie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base_add_edit_movie);
-        findViews();
+        binding = ActivityBaseAddEditMovieBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setupCustomSeriesItemsAdapter();
         fetchSeriesItems();
         setupSeriesItemsSp();
@@ -67,27 +64,19 @@ public class BaseAddEditMovieActivity extends BaseActivity {
     }
 
     private void setupSeriesItemsSp() {
-        seriesSp.setAdapter(customSeriesItemsAdapter);
+        binding.seriesSp.setAdapter(customSeriesItemsAdapter);
     }
 
     protected void showData() {
-        movieIdTxt.setText(movie.movieId);
-        movieNameTxt.setText(movie.title);
-        imageUrlTxt.setText(movie.imageUrl);
-        descriptionTxt.setText(movie.description);
+        binding.movieIdTxt.setText(movie.movieId);
+        binding.movieNameTxt.setText(movie.title);
+        binding.imageUrlTxt.setText(movie.imageUrl);
+        binding.descriptionTxt.setText(movie.description);
         for (int i = 0; i < customSeriesItemsAdapter.getCount(); i++) {
             SeriesItem series = customSeriesItemsAdapter.getItem(i);
             if (movie.seriesId.equals(series.seriesId)) {
-                seriesSp.setSelection(i);
+                binding.seriesSp.setSelection(i);
             }
         }
-    }
-
-    private void findViews() {
-        seriesSp = findViewById(R.id.series_sp);
-        movieIdTxt = findViewById(R.id.movie_id_txt);
-        movieNameTxt = findViewById(R.id.movie_name_txt);
-        imageUrlTxt = findViewById(R.id.image_url_txt);
-        descriptionTxt = findViewById(R.id.description_txt);
     }
 }

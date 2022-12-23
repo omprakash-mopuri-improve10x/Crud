@@ -19,21 +19,19 @@ public class EditMovieActivity extends BaseAddEditMovieActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setTitle("Edit Movie");
-        if (getIntent().hasExtra(Constants.KEY_MOVIE)) {
-            movie = (Movie) getIntent().getSerializableExtra(Constants.KEY_MOVIE);
-            showData();
-        }
+        movie = (Movie) getIntent().getSerializableExtra(Constants.KEY_MOVIE);
+        showData();
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.done) {
-            String movieId = movieIdTxt.getText().toString();
-            SeriesItem series = (SeriesItem) seriesSp.getSelectedItem();
+            String movieId = binding.movieIdTxt.getText().toString();
+            SeriesItem series = (SeriesItem) binding.seriesSp.getSelectedItem();
             String seriesId = series.seriesId;
-            String imageUrl = imageUrlTxt.getText().toString();
-            String movieName = movieNameTxt.getText().toString();
-            String description = descriptionTxt.getText().toString();
+            String imageUrl = binding.imageUrlTxt.getText().toString();
+            String movieName = binding.movieNameTxt.getText().toString();
+            String description = binding.descriptionTxt.getText().toString();
             updateMovie(movie.id, seriesId, movieId, movieName, imageUrl, description);
             return true;
         } else {
