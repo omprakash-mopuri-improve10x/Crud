@@ -38,10 +38,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
         Movie movie = movies.get(position);
-        holder.binding.titleTxt.setText(movie.title);
-        if (movie.imageUrl != null && movie.imageUrl.isEmpty() == false) {
-            Picasso.get().load(movie.imageUrl).into(holder.binding.movieImg);
-        }
+        holder.binding.setMovie(movie);
         holder.binding.deleteIb.setOnClickListener(view -> {
             movieOnItemActionListener.onDelete(movie.id);
         });
