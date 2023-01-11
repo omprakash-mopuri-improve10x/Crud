@@ -55,8 +55,6 @@ public class EditSeriesItemActivity extends BaseAddEditSeriesItemActivity {
     }
 
     private void showData() {
-        binding.seriesIdTxt.setText(seriesItem.seriesId);
-        binding.seriesNameTxt.setText(seriesItem.title);
-        binding.imageUrlTxt.setText(seriesItem.imageUrl);
+        binding.setSeriesItem(seriesItem);
     }
 }
