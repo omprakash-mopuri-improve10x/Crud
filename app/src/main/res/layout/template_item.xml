@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#ECE9F3"
+            android:background="@color/light_grey"
             android:orientation="horizontal"
             android:paddingLeft="8dp"
             android:paddingTop="4dp"
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="#ECE9F3"
+                android:backgroundTint="@color/light_grey"
                 app:srcCompat="@drawable/ic_baseline_close_24" />
         </LinearLayout>
 
