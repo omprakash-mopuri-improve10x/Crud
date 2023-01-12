@@ -6,4 +6,9 @@
     <string name="series_id">Series Id</string>
     <string name="series_name">series Name</string>
     <string name="image_url">Image Url</string>
+    <string name="movie_id">Movie Id</string>
+    <string name="movie_name">Movie Name</string>
+    <string name="series">Series</string>
+    <string name="description">Description</string>
+    <string name="powered_by">Powered By</string>
 </resources>

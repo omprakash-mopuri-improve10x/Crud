@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/dashboard_layout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingLeft="8dp"
-    android:paddingTop="8dp"
-    android:paddingRight="8dp">
+<layout>
 
-    <ImageView
-        android:id="@+id/dashboard_img"
+    <data>
+        <variable
+            name="dashboardItem"
+            type="com.example.crud.dashboard.DashboardItem" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/dashboard_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        android:orientation="vertical"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"
+        android:paddingRight="8dp">
 
-    <TextView
-        android:id="@+id/title_txt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="TextView"
-        android:textColor="#000000"
-        android:textSize="20sp" />
-</LinearLayout>
+        <ImageView
+            android:id="@+id/dashboard_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            imageUrl="@{dashboardItem.imageUrl}"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/title_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/heading_text_color"
+            android:textSize="20sp"
+            android:text="@{dashboardItem.title}"
+            tools:text="TextView" />
+    </LinearLayout>
+</layout>

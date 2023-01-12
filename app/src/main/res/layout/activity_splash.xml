@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="CRUD"
+            android:text="@string/app_name"
             android:textColor="#727FCD"
             android:textSize="34sp" />
     </LinearLayout>
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Powered by"
+        android:text="@string/powered_by"
         android:textSize="14sp" />
 
     <ImageView

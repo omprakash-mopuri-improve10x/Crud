@@ -38,8 +38,7 @@ public class DashboardItemsAdapter extends RecyclerView.Adapter<DashboardItemVie
     @Override
     public void onBindViewHolder(@NonNull DashboardItemViewHolder holder, int position) {
         DashboardItem dashboardItem = dashboardItems.get(position);
-        Picasso.get().load(dashboardItem.imageUrl).into(holder.binding.dashboardImg);
-        holder.binding.titleTxt.setText(dashboardItem.title);
+        holder.binding.setDashboardItem(dashboardItem);
         holder.binding.getRoot().setOnClickListener(view -> {
             if (holder.binding.titleTxt.getText().toString().equalsIgnoreCase("Messages")) {
                 Intent intent = new Intent(holder.binding.getRoot().getContext(), MessagesActivity.class);
