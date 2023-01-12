@@ -47,7 +47,7 @@
                         android:maxLines="1"
                         android:paddingRight="4dp"
                         android:text="@{message.name}"
-                        android:textColor="@color/black"
+                        android:textColor="@color/heading_text_color"
                         android:textSize="16sp"
                         tools:text="Omprakash" />
 
@@ -59,7 +59,7 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:text="@{message.phoneNumber}"
-                        android:textColor="@color/black"
+                        android:textColor="@color/heading_text_color"
                         android:textSize="16sp"
                         tools:text="+91 9381979805" />
                 </LinearLayout>

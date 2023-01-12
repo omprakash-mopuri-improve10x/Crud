@@ -39,7 +39,7 @@
                 android:gravity="center"
                 android:maxLines="2"
                 android:text="@{seriesItem.title}"
-                android:textColor="@color/heading_color"
+                android:textColor="@color/heading_text_color"
                 android:textSize="20sp"
                 tools:text="TextView" />
         </LinearLayout>
