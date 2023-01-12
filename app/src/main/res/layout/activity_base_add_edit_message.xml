@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -7,9 +9,7 @@
             type="com.example.crud.message.Message" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -20,8 +20,8 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Name"
-            android:textColor="#000000"
+            android:text="@string/name"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <EditText
@@ -30,7 +30,6 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:text="@{message.name}"
-            tools:hint="input text"
             android:inputType="textPersonName" />
 
         <TextView
@@ -38,8 +37,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="4dp"
-            android:text="Phone Number"
-            android:textColor="#000000"
+            android:text="@string/phone_number"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <EditText
@@ -48,7 +47,6 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:text="@{message.phoneNumber}"
-            tools:hint="input text"
             android:inputType="textPersonName" />
 
         <TextView
@@ -56,8 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="4dp"
-            android:text="Message"
-            android:textColor="#000000"
+            android:text="@string/message"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <EditText
